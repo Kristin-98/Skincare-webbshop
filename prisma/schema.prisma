@@ -17,6 +17,8 @@ model Product {
   description   String
   image         String
   price         Float
+  categoryId    Int
+  stockQuantity Int
   orderRows     OrderRow[]
 }
 
@@ -26,6 +28,9 @@ model Order {
   createdAt   DateTime @default(now())
   customerId  String
   totalPrice  Float
+  shippingAdressId Int
+  productId   Int
+  status     String
 
   customer  Customer   @relation(fields: [customerId], references: [id], onDelete: Cascade)
   orderRows OrderRow[]
@@ -45,11 +50,22 @@ model OrderRow {
 model Customer {
   id      String @id @default(cuid())
   name    String
-  address String
-  zipcode String
-  city    String
+  shippingAdressId Int  
   email   String
   phone   String
+  passwordHash String
+  isAdmin Boolean
+  createdAt DateTime
 
   orders Order[]
+}
+
+model Address {
+  id      String @id @default(cuid())
+  name    String
+  streetAdressId String
+  email   String
+  phone   Int
+  postalCode Int
+  city    String
 }
