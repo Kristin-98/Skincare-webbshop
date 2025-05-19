@@ -1,5 +1,5 @@
-import { Product } from "@/data";
 import { Box, Card, CardMedia, Typography } from "@mui/material";
+import { Product } from "@prisma/client";
 import Link from "next/link";
 
 interface Props {

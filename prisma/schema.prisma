@@ -29,10 +29,8 @@ model Order {
   customerId  String
   totalPrice  Float
   shippingAdressId String
-  productId   String
-  status     String
+  status     OrderStatus @default(pending)
 
-  customer  Customer   @relation(fields: [customerId], references: [id], onDelete: Cascade)
   orderRows OrderRow[]
 }
 
@@ -47,17 +45,12 @@ model OrderRow {
   order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
 }
 
-model Customer {
+model User {
   id      String @id @default(cuid())
-  name    String
-  shippingAdressId String  
-  email   String
-  phone   String
-  passwordHash String
-  isAdmin Boolean
   createdAt DateTime
-
-  orders Order[]
+  isAdmin Boolean
+  email   String
+  
 }
 
 model Address {
@@ -68,4 +61,9 @@ model Address {
   phone   Int
   postalCode Int
   city    String
+}
+
+enum OrderStatus {
+  pending
+  sent  
 }

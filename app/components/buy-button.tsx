@@ -1,8 +1,8 @@
 "use client";
 
-import { Product } from "@/data";
 import { AddShoppingCart } from "@mui/icons-material";
 import { Button } from "@mui/material";
+import { Product } from "@prisma/client";
 import { useState } from "react";
 import { useCart } from "../providers/cart-provider";
 import ProductToast from "./product-toast";

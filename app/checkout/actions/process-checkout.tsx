@@ -1,12 +1,12 @@
 "use server";
 
-import { CartItem } from "@/data";
+import { CartItem } from "@/app/providers/cart-provider";
 import { db } from "@/prisma/db";
 import { Prisma } from "@prisma/client";
 
 export async function processCheckout(
   cart: CartItem[],
-  customerData: Prisma.CustomerCreateInput
+  customerData: Prisma.UserCreateInput
 ) {
   console.log("Hej");
 
@@ -14,8 +14,15 @@ export async function processCheckout(
     throw new Error("Cart is empty");
   }
 
-  const customer = await db.customer.create({
-    data: customerData,
+  const address = await db.address.create({
+    data: {
+      name: "John Doe",
+      streetAdressId: "123-Street-Id", // Note: This name seems odd — did you mean `streetAddress`?
+      email: "john@example.com",
+      phone: 1234567890,
+      postalCode: 12345,
+      city: "Sample City",
+    },
   });
 
   const totalPrice = cart.reduce(
@@ -25,8 +32,9 @@ export async function processCheckout(
 
   const order = await db.order.create({
     data: {
-      customerId: customer.id,
+      shippingAdressId: address.id,
       totalPrice,
+      customerId: "some-customer-id",
       orderRows: {
         create: cart.map((item) => ({
           productId: item.id,
