@@ -1,17 +1,15 @@
-import { db } from '@/prisma/db';
-import { Box } from '@mui/material';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid2';
-import Image from 'next/image';
-import BuyButton from './components/buy-button';
-import HeroText from './components/hero-text';
-import ProductCard from './components/product-card';
+import { db } from "@/prisma/db";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid2";
+import BuyButton from "./components/buy-button";
+import Hero from "./components/hero";
+import ProductCard from "./components/product-card";
 
 export default async function Home() {
   const products = await db.product.findMany();
   return (
     <main>
-      <Box
+      {/* <Box
         sx={{
           position: 'relative',
           width: '100%',
@@ -32,8 +30,9 @@ export default async function Home() {
           layout="fill"
           objectFit="cover"
         />
-      </Box>
-      <HeroText />
+      </Box> */}
+      {/* <HeroText /> */}
+      <Hero />
       <Container>
         <Grid container spacing={2}>
           {products.map((product) => (
