@@ -17,7 +17,7 @@ model Product {
   description   String
   image         String
   price         Float
-  categoryId    Int
+  categoryId    String
   stockQuantity Int
   orderRows     OrderRow[]
 }
@@ -28,8 +28,8 @@ model Order {
   createdAt   DateTime @default(now())
   customerId  String
   totalPrice  Float
-  shippingAdressId Int
-  productId   Int
+  shippingAdressId String
+  productId   String
   status     String
 
   customer  Customer   @relation(fields: [customerId], references: [id], onDelete: Cascade)
@@ -50,7 +50,7 @@ model OrderRow {
 model Customer {
   id      String @id @default(cuid())
   name    String
-  shippingAdressId Int  
+  shippingAdressId String  
   email   String
   phone   String
   passwordHash String
