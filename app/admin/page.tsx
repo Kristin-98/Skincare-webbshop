@@ -5,12 +5,18 @@ import AdminCard from "./lib/admin-card";
 export default function AdminPage() {
   return (
     <main>
-      <Typography variant="h4" sx={{display: "flex", justifyContent: "center", marginTop: 5}}>Hantera produkter</Typography>
+      <Typography
+        variant="h4"
+        sx={{ display: "flex", justifyContent: "center", marginTop: 5 }}
+      >
+        Hantera produkter
+      </Typography>
       <Box
         sx={{
           display: "flex",
           justifyContent: "center",
           marginTop: 3,
+          gap: 1,
         }}
       >
         <Link href="/admin/product/new/">
@@ -21,6 +27,16 @@ export default function AdminPage() {
             color="primary"
           >
             Add a product
+          </Button>
+        </Link>
+        <Link href="/admin/orders/">
+          <Button
+            data-cy="admin-add-product"
+            type="submit"
+            variant="contained"
+            color="primary"
+          >
+            Placed orders
           </Button>
         </Link>
       </Box>
