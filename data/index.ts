@@ -11,7 +11,7 @@ export const products: Product[] = [
     id: "1",
     articleNumber: "11",
     image:
-      "https://media.royaldesign.se/1/tradition-drawn-hm3-stol-20?quality=80&w=1366",
+      "https://cimmermann.uk/cdn/shop/products/tradition-drawn-chair-hm3-oak-1_2048x.jpg?v=1607527835",
     title: "&Tradition Drawn HM3 Matbordsstol Valnöt",
     description:
       "Drawn HM3-stolen är en klassisk dansk design från &Tradition och designad av Hvidt & Mølgaard 1956. Stolen är baserad på traditionella hantverkstekniker och är tillverkad av organiska material. Stolen finns i följande färger: oljad ek, tvålbehandlad ek, oljad valnöt och svartmålad samt har ett fast ryggstöd. Sitsen är handvävd av mer än 100 meter naturpappersnöre, vilket säkerställer en bekväm sittplats. Det är en tidlös stol som med sin enkelhet och eleganta design passar in i alla hem. Stolen är perfekt som matbordsstol och bidrar till en nordisk och stilren atmosfär",
@@ -35,7 +35,7 @@ export const products: Product[] = [
     id: "3",
     articleNumber: "33",
     image:
-      "https://image-resizing.booztcdn.com/warm-nordic-furniture/wnf13010801040_c2198870549.webp?has_grey=1&has_webp=1&version=1d2c8dae281b17e45717bd1f977392c4&size=source",
+      "https://d3tj81smxskx4e.cloudfront.net/q81DRQ6-2dl8fWRPZXwf0s9AmJSTzMFctz6GUrvqOhM/s:2000:2000/rt:fit/sm:1/scp:1/q:75/fn:1284884-12214688_fullsize/czM6Ly9hdWt0aW9u/LXByb2R1Y3Rpb24v/aXRlbV9pbWFnZXMv/MTI4NDg4NC8xMjIx/NDY4OF9vcmlnaW5h/bC5qcGc",
     title: "Dining chair by EW Bach, Skovby, 1950s-60s, Denmark",
     description:
       "Set of 4 chairs manufactured in Denmark in the 1950s-60s by Skovby. The chairs are designed by EW Bach. The chairs are made of mahogany on the structure and veneered with rosewood on the backrest. The chairs have been fully restored and reupholstered by our team. The padding has been changed, and we choose an off-white fabric for these pieces. They are sold as a set of 4 and the price is per piece.",
@@ -71,7 +71,7 @@ export const products: Product[] = [
     id: "6",
     articleNumber: "66",
     image:
-      "https://content.cylindo.com/api/v2/4608/products/161503/frames/1/161503.webp?size=1024&feature=1:261_DANNY_CREAM&feature=LEGS:Walnut_Natural",
+      "https://cdn.shopify.com/s/files/1/0607/5285/5272/files/09d7b6bf2c5f66535b484e7aef46a2cc_384x.jpg?v=1717677559",
     title: "Sigrid",
     description:
       "Sigrid är en klassisk möbel med ett mjukt, subtilt nedtonat uttryck som samtidigt utstrålar ren elegans. Designen är tidlös med vinklade armstöd och massiva träben, där kuddarnas enkelhet understryker designens strama formspråk. Vega Sand Dune är en klassisk och tidlös textil med en enfärgad vävstruktur och en slät naturlig look och känsla. Den har fördelen av att vara tillverkad av en blandning av polyester och akryl, vilket ger hög slitstyrka och ljusbeständighet. Detta säkerställer lång fysisk hållbarhet och gör den lätt att underhålla. Färgen är en verklig klassiker med en blandning av beige, grå och offwhite garn, och de naturliga färgerna framhäver den övergripande naturliga looken. Textilfärgen uppfyller alla OEKO-TEX® 100-standarder.",
