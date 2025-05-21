@@ -30,12 +30,6 @@ export default function Header() {
         <Image src="/logo.png" alt="Beauty" width={100} height={100} />
       </Link>
       <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-        <Link data-cy="cart-link" href="/checkout">
-          <IconButton data-cy="cart-items-count-badge" color="primary">
-            <CartIcon />
-          </IconButton>
-        </Link>
-
         {user ? (
           <Button onClick={() => signOut()}>
             Sign Out ({user.name ?? "User"})
@@ -45,6 +39,11 @@ export default function Header() {
             Sign In
           </Button>
         )}
+        <Link data-cy="cart-link" href="/checkout">
+          <IconButton data-cy="cart-items-count-badge" color="primary">
+            <CartIcon />
+          </IconButton>
+        </Link>
       </Box>
     </Box>
   );

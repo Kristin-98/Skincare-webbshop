@@ -14,4 +14,17 @@ export const auth = betterAuth({
            clientSecret: process.env.GITHUB_CLIENT_SECRET as string, 
         }, 
     }, 
+   session: {
+    // 👇 Add this to inject isAdmin into session data
+    async customize({ user }) {
+      return {
+        user: {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          isAdmin: user.isAdmin, // <- this is the key line
+        },
+      };
+    },
+  },
 });
