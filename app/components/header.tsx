@@ -1,14 +1,12 @@
 "use client";
 
 import { signIn, signOut, useSession } from "@/app/auth-client";
-import { Box, Button, IconButton, Link } from "@mui/material";
+import { Box, Button, Link } from "@mui/material";
 import Image from "next/image";
-import CartIcon from "./cart-icon";
-import TemporaryDrawer from "./drawer";
 import CartWithDrawer from "./cart-with-drawer";
+import TemporaryDrawer from "./drawer";
 
 export default function Header() {
-
   const { data, isPending } = useSession();
   const user = data?.user;
 
@@ -31,14 +29,9 @@ export default function Header() {
       <Link href="/">
         <Image src="/logo.png" alt="Beauty" width={100} height={100} />
       </Link>
-      				<CartWithDrawer />
-      <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-        <Link data-cy="cart-link" href="/checkout">
-          <IconButton data-cy="cart-items-count-badge" color="primary">
-            <CartIcon />
-          </IconButton>
-        </Link>
 
+      <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+        <CartWithDrawer />
         {user ? (
           <Button onClick={() => signOut()}>
             Sign Out ({user.name ?? "User"})
