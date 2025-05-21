@@ -71,7 +71,7 @@ model User {
   createdAt DateTime @default(now())
   isAdmin   Boolean  @default(false)
 
-  email         String
+  email         String?
   emailVerified Boolean
   image         String?
   updatedAt     DateTime
