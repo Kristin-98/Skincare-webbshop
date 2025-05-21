@@ -1,7 +1,7 @@
 import { getAllProducts } from "@/app/actions";
 import ProductCard from "@/app/components/product-card";
 import { Edit } from "@mui/icons-material";
-import { Box, Button, Container } from "@mui/material";
+import { Box, Button, Container, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import Link from "next/link";
 import DeleteBtn from "./delete-btn";
@@ -16,6 +16,14 @@ export default async function AdminCard() {
           {products.map((product) => (
             <Grid size={{ xs: 6, md: 4 }} key={product.id}>
               <ProductCard product={product}>
+                <Box sx={{display: "block",}}>
+                  <Typography variant="body2">
+                    Category ID: {product.categoryId}
+                  </Typography>
+                  <Typography variant="body2">
+                    Stock Quantity: {product.stockQuantity}
+                  </Typography>
+                </Box>
                 <Box
                   sx={{
                     gap: 0.5,
@@ -33,7 +41,7 @@ export default async function AdminCard() {
                     </Link>
                   </Button>
                   <DeleteBtn productId={product.articleNumber} />
-                </Box>
+                </Box>                
               </ProductCard>
             </Grid>
           ))}

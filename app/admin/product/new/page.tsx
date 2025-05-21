@@ -11,6 +11,8 @@ const schema = z.object({
   description: z.string().min(1, "Description is required"),
   price: z.coerce.number().positive("Price must be a positive number"),
   image: z.string().url("Image must be a valid URL"),
+  categoryId: z.string().min(1, "Category is required"),
+  stockQuantity: z.coerce.number().int().nonnegative("Stock must be a number"),
 });
 
 export default function AdminForm() {
@@ -21,16 +23,20 @@ export default function AdminForm() {
       description: "",
       price: 0,
       image: "",
+      categoryId: "",
+      stockQuantity: 0,
     },
   });
 
   const handleSubmit = async (product: Prisma.ProductCreateInput) => {
+    console.log("Submitting product:", product);
     try {
       await addNewProduct(product);
       form.reset();
     } catch (error) {
       console.error("Error adding product:", error);
-    }
+    }   
+
   };
 
   return (
@@ -90,6 +96,26 @@ export default function AdminForm() {
           {...form.register("price", { valueAsNumber: true })}
           error={Boolean(form.formState.errors.price)}
           helperText={form.formState.errors.price?.message}
+        />
+        <TextField
+         slotProps={{
+          htmlInput: { "data-cy": "product-categoryId" },
+          formHelperText: { "data-cy": "product-categoryId-error" } as any,
+         }}
+         label="Category ID"
+         {...form.register("categoryId")}
+         error={Boolean(form.formState.errors.categoryId)}
+         helperText={form.formState.errors.categoryId?.message}
+        />
+        <TextField
+          slotProps={{
+            htmlInput: { "data-cy": "product-price" },
+            formHelperText: { "data-cy": "product-price-error" } as any,
+          }}
+          label="Stock Quantity"
+          {...form.register("stockQuantity", { valueAsNumber: true })}
+          error={Boolean(form.formState.errors.stockQuantity)}
+          helperText={form.formState.errors.stockQuantity?.message}
         />
         <TextField
           slotProps={{
