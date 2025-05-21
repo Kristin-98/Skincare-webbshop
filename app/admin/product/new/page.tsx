@@ -24,17 +24,19 @@ export default function AdminForm() {
       price: 0,
       image: "",
       categoryId: "",
-      stockQuantity: "",
+      stockQuantity: 0,
     },
   });
 
   const handleSubmit = async (product: Prisma.ProductCreateInput) => {
+    console.log("Submitting product:", product);
     try {
       await addNewProduct(product);
       form.reset();
     } catch (error) {
       console.error("Error adding product:", error);
-    }
+    }   
+
   };
 
   return (
