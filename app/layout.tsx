@@ -7,6 +7,7 @@ import { PropsWithChildren } from "react";
 import Footer from "./components/footer";
 import Header from "./components/header";
 import { CartProvider } from "./providers/cart-provider";
+import SignInPage from "./signin/page";
 import theme from "./theme/theme";
 
 const poppins = Poppins({
@@ -33,6 +34,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
                 }}
               />
               <Header />
+              <SignInPage />
               {children}
               <Footer />
             </CartProvider>

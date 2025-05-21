@@ -3,11 +3,7 @@
  * OBS: Kan utökas men inte ändras pga cypress.
  **/
 
-import { Product } from "@prisma/client";
-
-
-
-
+import { Product } from "@/app/generated/prisma";
 
 /* Lägg till era produkter här */
 export const products: Product[] = [

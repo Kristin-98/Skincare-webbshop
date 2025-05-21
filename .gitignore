@@ -2,6 +2,7 @@
 # test
 cypress
 prisma/dev.db
+app/generated
 
 # dependencies
 /node_modules
