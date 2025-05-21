@@ -81,6 +81,27 @@ export default function ProductForm({ product }: Props) {
         helperText={form.formState.errors.price?.message}
       />
       <TextField
+         slotProps={{
+          htmlInput: { "data-cy": "product-categoryId" },
+          formHelperText: { "data-cy": "product-categoryId-error" } as any,
+         }}
+         label="Category ID"
+         {...form.register("categoryId")}
+         error={Boolean(form.formState.errors.categoryId)}
+         helperText={form.formState.errors.categoryId?.message}
+      />
+      <TextField
+        slotProps={{
+          htmlInput: { "data-cy": "product-price" },
+          formHelperText: { "data-cy": "product-price-error" } as any,
+        }}
+        label="Stock Quantity"
+        type="number"
+        {...form.register("stockQuantity")}
+        error={Boolean(form.formState.errors.stockQuantity)}
+        helperText={form.formState.errors.stockQuantity?.message}
+      />
+      <TextField
         slotProps={{
           htmlInput: { "data-cy": "product-image" },
           formHelperText: { "data-cy": "product-image-error" } as any,
