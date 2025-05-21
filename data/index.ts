@@ -35,7 +35,7 @@ export const products: Product[] = [
     id: "3",
     articleNumber: "33",
     image:
-      "https://d3tj81smxskx4e.cloudfront.net/q81DRQ6-2dl8fWRPZXwf0s9AmJSTzMFctz6GUrvqOhM/s:2000:2000/rt:fit/sm:1/scp:1/q:75/fn:1284884-12214688_fullsize/czM6Ly9hdWt0aW9u/LXByb2R1Y3Rpb24v/aXRlbV9pbWFnZXMv/MTI4NDg4NC8xMjIx/NDY4OF9vcmlnaW5h/bC5qcGc",
+      "https://www.nordicnest.se/assets/blobs/warm-nordic-cow-horn-stol-lader-ivory-valnotsstativ/Cow-Horn-stol-oak-2405059-t-ivory-leathe-78eb173c59.jpeg?preset=medium&dpr=2",
     title: "Dining chair by EW Bach, Skovby, 1950s-60s, Denmark",
     description:
       "Set of 4 chairs manufactured in Denmark in the 1950s-60s by Skovby. The chairs are designed by EW Bach. The chairs are made of mahogany on the structure and veneered with rosewood on the backrest. The chairs have been fully restored and reupholstered by our team. The padding has been changed, and we choose an off-white fabric for these pieces. They are sold as a set of 4 and the price is per piece.",
@@ -71,7 +71,7 @@ export const products: Product[] = [
     id: "6",
     articleNumber: "66",
     image:
-      "https://cdn.shopify.com/s/files/1/0607/5285/5272/files/09d7b6bf2c5f66535b484e7aef46a2cc_384x.jpg?v=1717677559",
+      "https://image.hm.com/assets/hm/11/83/11832aa11272bb7d8aa3dc9d4bf8f8b2597389f2.jpg?imwidth=768",
     title: "Sigrid",
     description:
       "Sigrid är en klassisk möbel med ett mjukt, subtilt nedtonat uttryck som samtidigt utstrålar ren elegans. Designen är tidlös med vinklade armstöd och massiva träben, där kuddarnas enkelhet understryker designens strama formspråk. Vega Sand Dune är en klassisk och tidlös textil med en enfärgad vävstruktur och en slät naturlig look och känsla. Den har fördelen av att vara tillverkad av en blandning av polyester och akryl, vilket ger hög slitstyrka och ljusbeständighet. Detta säkerställer lång fysisk hållbarhet och gör den lätt att underhålla. Färgen är en verklig klassiker med en blandning av beige, grå och offwhite garn, och de naturliga färgerna framhäver den övergripande naturliga looken. Textilfärgen uppfyller alla OEKO-TEX® 100-standarder.",
