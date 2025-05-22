@@ -20,10 +20,14 @@ const checkoutSchema = z.object({
   streetAdress: z.string().min(1, "Address is required"),
   postalCode: z
     .string()
-    .regex(/^[0-9]{5}$/, "Invalid zipcode (5 digits required)"),
+    .regex(/^[0-9]{5}$/, "Invalid zipcode (5 digits required)")
+    .transform((val) => parseInt(val, 10)),
   city: z.string().min(1, "City is required"),
   email: z.string().email("Invalid email address"),
-  phone: z.string().regex(/^\d{7,15}$/, "Invalid phone number"),
+  phone: z
+    .string()
+    .regex(/^\d{7,15}$/, "Invalid phone number")
+    .transform((val) => parseInt(val, 10)),
 });
 
 type CheckoutFormValues = z.infer<typeof checkoutSchema>;
@@ -49,15 +53,9 @@ export default function CheckoutForm() {
       // Optionally, redirect to login or show an error
       return;
     }
-    const orderNumber = await processCheckout(
-      cartItems,
-      {
-        ...data,
-        emailVerified: true,
-        updatedAt: new Date(),
-      },
-      userId
-    );
+    const orderNumber = await processCheckout(cartItems, {
+      ...data,
+    });
     console.log("ORDER COMPLETE");
     clearCart();
     router.push("/confirmation/" + orderNumber);
@@ -84,9 +82,7 @@ export default function CheckoutForm() {
         error={Boolean(errors.name)}
       />
       {errors.name && (
-        <FormHelperText error>
-          {errors.name.message}
-        </FormHelperText>
+        <FormHelperText error>{errors.name.message}</FormHelperText>
       )}
 
       <TextField
@@ -96,9 +92,7 @@ export default function CheckoutForm() {
         error={Boolean(errors.streetAdress)}
       />
       {errors.streetAdress && (
-        <FormHelperText error>
-          {errors.streetAdress.message}
-        </FormHelperText>
+        <FormHelperText error>{errors.streetAdress.message}</FormHelperText>
       )}
 
       <TextField
@@ -108,9 +102,7 @@ export default function CheckoutForm() {
         error={Boolean(errors.postalCode)}
       />
       {errors.postalCode && (
-        <FormHelperText error>
-          {errors.postalCode.message}
-        </FormHelperText>
+        <FormHelperText error>{errors.postalCode.message}</FormHelperText>
       )}
 
       <TextField
@@ -120,9 +112,7 @@ export default function CheckoutForm() {
         error={Boolean(errors.city)}
       />
       {errors.city && (
-        <FormHelperText error>
-          {errors.city.message}
-        </FormHelperText>
+        <FormHelperText error>{errors.city.message}</FormHelperText>
       )}
 
       <TextField
@@ -132,9 +122,7 @@ export default function CheckoutForm() {
         error={Boolean(errors.email)}
       />
       {errors.email && (
-        <FormHelperText error>
-          {errors.email.message}
-        </FormHelperText>
+        <FormHelperText error>{errors.email.message}</FormHelperText>
       )}
 
       <TextField
@@ -144,9 +132,7 @@ export default function CheckoutForm() {
         error={Boolean(errors.phone)}
       />
       {errors.phone && (
-        <FormHelperText error>
-          {errors.phone.message}
-        </FormHelperText>
+        <FormHelperText error>{errors.phone.message}</FormHelperText>
       )}
 
       <Button type="submit" variant="contained" color="primary">
