@@ -13,6 +13,7 @@ const schema = z.object({
   description: z.string().min(1, "Description is required"),
   price: z.coerce.number().positive("Price must be a positive number"),
   image: z.string().url("Image must be a valid URL"),
+  stockQuantity: z.coerce.number().int().nonnegative("Stock must be a non-negative number"),
 });
 
 interface Props {
@@ -79,6 +80,27 @@ export default function ProductForm({ product }: Props) {
         {...form.register("price")}
         error={Boolean(form.formState.errors.price)}
         helperText={form.formState.errors.price?.message}
+      />
+      <TextField
+         slotProps={{
+          htmlInput: { "data-cy": "product-categoryId" },
+          formHelperText: { "data-cy": "product-categoryId-error" } as any,
+         }}
+         label="Category ID"
+         {...form.register("categoryId")}
+         error={Boolean(form.formState.errors.categoryId)}
+         helperText={form.formState.errors.categoryId?.message}
+      />
+      <TextField
+      slotProps={{
+        htmlInput: { "data-cy": "product-stockQuantity" },
+        formHelperText: { "data-cy": "product-stockQuantity-error" } as any,
+      }}
+      label="Stock Quantity"
+         type="number"
+      {...form.register("stockQuantity", { valueAsNumber: true })}
+       error={Boolean(form.formState.errors.stockQuantity)}
+       helperText={form.formState.errors.stockQuantity?.message}
       />
       <TextField
         slotProps={{

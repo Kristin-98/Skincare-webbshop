@@ -27,14 +27,14 @@ model Order {
   id               String      @id @default(cuid())
   orderNumber      String      @unique @default(cuid())
   createdAt        DateTime    @default(now())
-  customerId       String
   totalPrice       Float
   shippingAdressId String
   status           OrderStatus @default(pending)
+  customerId       String
 
-  customer  User       @relation(fields: [userId], references: [id])
-  orderRows OrderRow[]
-  userId    String
+  customer       User       @relation(fields: [customerId], references: [id])
+  shippingAdress Adress     @relation(fields: [shippingAdressId], references: [id])
+  orderRows      OrderRow[]
 }
 
 model OrderRow {
@@ -48,14 +48,15 @@ model OrderRow {
   order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
 }
 
-model Address {
-  id             String @id @default(cuid())
-  name           String
-  streetAdressId String
-  email          String
-  phone          Int
-  postalCode     Int
-  city           String
+model Adress {
+  id           String  @id @default(cuid())
+  name         String
+  streetAdress String
+  email        String
+  phone        Int
+  postalCode   Int
+  city         String
+  Order        Order[]
 }
 
 enum OrderStatus {
@@ -71,7 +72,7 @@ model User {
   createdAt DateTime @default(now())
   isAdmin   Boolean  @default(false)
 
-  email         String?
+  email         String
   emailVerified Boolean
   image         String?
   updatedAt     DateTime
