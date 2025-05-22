@@ -4,6 +4,7 @@ import { signIn, signOut, useSession } from "@/app/auth-client";
 import { Box, Button, IconButton, Link } from "@mui/material";
 import Image from "next/image";
 import CartIcon from "./cart-icon";
+import CartWithDrawer from "./cart-with-drawer";
 import TemporaryDrawer from "./drawer";
 
 export default function Header() {
@@ -29,7 +30,9 @@ export default function Header() {
       <Link href="/">
         <Image src="/logo.png" alt="Beauty" width={100} height={100} />
       </Link>
+
       <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+        <CartWithDrawer />
         {user ? (
           <Button onClick={() => signOut()}>
             Sign Out ({user.name ?? "User"})
