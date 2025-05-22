@@ -1,5 +1,6 @@
 "use client";
 
+import { useSession } from "@/app/auth-client";
 import { useCart } from "@/app/providers/cart-provider";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -30,6 +31,8 @@ type CheckoutFormValues = z.infer<typeof checkoutSchema>;
 export default function CheckoutForm() {
   const router = useRouter();
   const { clearCart, cart: cartItems } = useCart();
+  const { data: session } = useSession();
+  const userId = session?.user?.id;
 
   const {
     register,
@@ -41,7 +44,20 @@ export default function CheckoutForm() {
 
   const onSubmit = async (data: CheckoutFormValues) => {
     console.log("Form submitted with data:", data);
-    const orderNumber = await processCheckout(cartItems, data);
+    if (!userId) {
+      console.error("User not authenticated.");
+      // Optionally, redirect to login or show an error
+      return;
+    }
+    const orderNumber = await processCheckout(
+      cartItems,
+      {
+        ...data,
+        emailVerified: true,
+        updatedAt: new Date(),
+      },
+      userId
+    );
     console.log("ORDER COMPLETE");
     clearCart();
     router.push("/confirmation/" + orderNumber);
