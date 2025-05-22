@@ -41,12 +41,29 @@ export default function TemporaryDrawer() {
 
   if (isLargeScreen) {
     return (
-      <Link
-        href="/admin"
-        style={{ textDecoration: "none", color: theme.palette.primary.main, fontWeight: "bold", marginLeft: 10 }}
-      >
-        Admin
-      </Link>
+      <>
+        <Link
+          href="/admin"
+          style={{
+            textDecoration: "none",
+            color: theme.palette.primary.main,
+            fontWeight: "bold",
+            marginLeft: 10,
+          }}
+        >
+          Admin
+        </Link>
+        <Link
+          href="/customer-order-history"
+          style={{
+            textDecoration: "none",
+            color: theme.palette.primary.main,
+            fontWeight: "bold",            
+          }}
+        >
+          Customer Order History
+        </Link>
+      </>
     );
   }
 
