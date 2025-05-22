@@ -6,20 +6,20 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: brown[400],
-      light: brown[300],
-      dark: brown[700],
+      main: '#8d6e63',
+      light: '#a1887f',
+      dark: '#5d4037]',
     },
     secondary: {
       main: "#f44336" /*accentfärger*/,
     },
     background: {
-      default: brown[50],
+      default: '#efebe9',
       paper: "#F5F5F5" /*white smoke*/,
     },
     text: {
-      primary: brown[900],
-      secondary: brown[600],
+      primary: '#3e2723',
+      secondary: '#6d4c41',
     },
   },
   typography: {
