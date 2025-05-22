@@ -54,20 +54,19 @@ export default async function ProductPage({ params }: Props) {
               width: { xs: "100%", sm: "50%" },
             }}
           >
-            <Typography data-cy="product-title" variant="h3">
+            <Typography variant="h3">
               {item.title}
             </Typography>
             <Typography>
               <strong>Artikelnummer:</strong> {item.articleNumber}
             </Typography>
             <Divider />
-            <Typography data-cy="product-description">
+            <Typography>
               {item.description}
             </Typography>
 
             <Box sx={{display: "flex", justifyContent: "flex-end", gap: "10px", marginRight: "10px"}}>
             <Typography
-              data-cy="product-price"
               variant="body1"
               sx={{ marginTop: 2 }}
               >

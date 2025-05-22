@@ -32,7 +32,6 @@ export default function BuyButton({ product }: BuyButtonProps) {
   return (
     <div>
       <Button
-        data-cy="product-buy-button"
         variant="contained"
         sx={{ margin: 0.5, bgcolor: "palette.primary.main" }}
         onClick={handleClick}
@@ -40,7 +39,6 @@ export default function BuyButton({ product }: BuyButtonProps) {
         <AddShoppingCart />
       </Button>
       <ProductToast
-        data-cy="added-to-cart-toast"
         open={open}
         handleClose={handleClose}
       />
