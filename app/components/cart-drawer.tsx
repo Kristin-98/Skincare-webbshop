@@ -8,7 +8,6 @@ import {
 	List,
 	ListItem,
 	ListItemAvatar,
-	ListItemText,
 	Typography,
 	Button,
 	Divider,
@@ -19,6 +18,7 @@ import { useCart } from "../providers/cart-provider";
 import IncreaseDecreaseBtn from "../components/increase-decrease-btn";
 import theme from "../theme/theme";
 import { useRouter } from "next/navigation";
+import { useSession, signIn, signUp } from "../auth-client";
 
 export default function CartDrawer({
 	open,
@@ -29,6 +29,8 @@ export default function CartDrawer({
 }) {
 	const router = useRouter();
 	const { cart, updateQuantity, removeFromCart } = useCart();
+	const { data } = useSession();
+	const user = data?.user;
 
 	const totalPrice = cart.reduce(
 		(sum, item) => sum + item.price * item.quantity,
@@ -45,7 +47,7 @@ export default function CartDrawer({
 						alignItems: "center",
 					}}
 				>
-					<Typography variant="h6">Din varukorg</Typography>
+					<Typography variant="h6">Cart</Typography>
 					<IconButton onClick={onClose}>
 						<CloseIcon />
 					</IconButton>
@@ -55,7 +57,7 @@ export default function CartDrawer({
 
 				<List>
 					{cart.length === 0 ? (
-						<Typography textAlign="center">Varukorgen är tom.</Typography>
+						<Typography textAlign="center">Cart is empty</Typography>
 					) : (
 						cart.map((item) => (
 							<ListItem
@@ -92,7 +94,7 @@ export default function CartDrawer({
 										{item.title}
 									</Typography>
 									<Typography variant="body2">
-										Pris: {item.price * item.quantity} kr
+										{item.price * item.quantity} kr
 									</Typography>
 								</Box>
 
@@ -122,7 +124,7 @@ export default function CartDrawer({
 						<Box
 							sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}
 						>
-							<Typography variant="subtitle1">Totalt:</Typography>
+							<Typography variant="subtitle1">Total:</Typography>
 							<Typography
 								variant="subtitle1"
 								sx={{ fontWeight: "bold", color: theme.palette.primary.main }}
@@ -131,17 +133,32 @@ export default function CartDrawer({
 							</Typography>
 						</Box>
 
-						<Button
-							fullWidth
-							variant="contained"
-							color="primary"
-							onClick={() => {
-								onClose();
-								router.push("/checkout");
-							}}
-						>
-							Till kassan
-						</Button>
+						{user ? (
+							<Button
+								fullWidth
+								variant="contained"
+								color="primary"
+								onClick={() => {
+									onClose();
+									router.push("/checkout");
+								}}
+							>
+								Proceed to checkout
+							</Button>
+						) : (
+							<Box sx={{ textAlign: "center", mt: 2 }}>
+								<Typography variant="body1" sx={{ mb: 1 }}>
+									You need to be logged in to checkout
+								</Typography>
+								<Button
+									variant="outlined"
+									color="primary"
+									onClick={() => signIn.social({ provider: "github" })}
+								>
+									Sign In
+								</Button>
+							</Box>
+						)}
 					</>
 				)}
 			</Box>
