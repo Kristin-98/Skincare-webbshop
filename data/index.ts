@@ -3,7 +3,11 @@
  * OBS: Kan utökas men inte ändras pga cypress.
  **/
 
+17-produkt---uppdatera-produkter-i-i-data---indexts
 import { Product } from "@prisma/client";
+
+import { Product } from "@/app/generated/prisma";
+main
 
 /* Lägg till era produkter här */
 export const products: Product[] = [
