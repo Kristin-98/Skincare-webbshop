@@ -33,7 +33,6 @@ export default function OrderSummary() {
       ) : (
         cart.map((item) => (
           <ListItem
-            data-cy="cart-item"
             key={item.id}
             sx={{
               display: "flex",
@@ -52,10 +51,8 @@ export default function OrderSummary() {
               />
             </ListItemAvatar>
             <ListItemText
-              data-cy="product-quantity"
               primary={
                 <Typography
-                  data-cy="product-title"
                   variant="h6"
                   sx={{
                     fontWeight: "bold",
@@ -75,7 +72,6 @@ export default function OrderSummary() {
               }}
             >
               <ListItemText
-                data-cy="product-price"
                 primary={`Pris: ${item.price * item.quantity} SEK`}
               />
             </Box>
@@ -102,7 +98,6 @@ export default function OrderSummary() {
             Totalpris:
           </Typography>
           <Typography
-            data-cy="total-price"
             variant="h6"
             sx={{ fontWeight: "bold", color: theme.palette.primary.main }}
           >

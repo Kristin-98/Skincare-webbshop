@@ -37,7 +37,7 @@ export default async function AdminCard() {
                 >
                   <Button color="primary" sx={{ minWidth: "auto" }}>
                     <Link href={`/admin/product/${product.articleNumber}`}>
-                      <Edit color="primary" data-cy="admin-edit-product" />
+                      <Edit color="primary" />
                     </Link>
                   </Button>
                   <DeleteBtn productId={product.articleNumber} />

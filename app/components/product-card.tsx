@@ -9,7 +9,7 @@ interface Props {
 
 export default function ProductCard({ product, children }: Props) {
   return (
-    <Card data-cy="product" sx={{ maxWidth: 345, marginTop: 4 }}>
+    <Card sx={{ maxWidth: 345, marginTop: 4 }}>
       <Link
         href={`/product/${product.articleNumber}/${encodeURIComponent(
           product.title
@@ -24,12 +24,11 @@ export default function ProductCard({ product, children }: Props) {
       </Link>
       <Typography
         variant="h6"
-        data-cy="product-title"
         sx={{ boxSizing: "border-box", paddingLeft: 0.5 }}
       >
         {product.title}
       </Typography>
-      <Typography data-cy="product-id" variant="body2">
+      <Typography variant="body2">
         {product.articleNumber}
       </Typography>
       <Box
@@ -41,7 +40,6 @@ export default function ProductCard({ product, children }: Props) {
       >
         <Typography
           variant="body1"
-          data-cy="product-price"
           sx={{ boxSizing: "border-box", paddingLeft: 0.5 }}
         >
           Pris: {product.price} kr

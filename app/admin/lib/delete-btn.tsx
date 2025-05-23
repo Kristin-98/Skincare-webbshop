@@ -26,7 +26,6 @@ export default function DeleteBtn({ productId }: { productId: string }) {
         color="primary"
         sx={{ minWidth: "auto" }}
         disabled={isPending}
-        data-cy="admin-remove-product"
       >
         <RemoveCircleOutline />
       </Button>
@@ -41,7 +40,6 @@ export default function DeleteBtn({ productId }: { productId: string }) {
             onClick={handleDelete}
             color="error"
             disabled={isPending}
-            data-cy="confirm-delete-button"
           >
             Ta bort
           </Button>
