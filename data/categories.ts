@@ -1,24 +1,27 @@
-import { Category } from "@prisma/client";
+export type SeedCategory = {
+	name: string;
+	description: string;
+};
 
-export const categories = [
+export const categories: SeedCategory[] = [
 	{
-		name: "Stolar",
+		name: "Chairs",
 		description:
-			"Tidlösa stolar med fokus på komfort, hantverk och naturliga material. Skandinavisk enkelhet för varje rum.",
+			"Timeless chairs focused on comfort, craftsmanship, and natural materials. Scandinavian simplicity for every room.",
 	},
 	{
-		name: "Bord",
+		name: "Tables",
 		description:
-			"Minimalistiska bord i trä och sten med rena linjer och funktionell design skapade för att hålla över tid.",
+			"Minimalist tables made of wood and stone with clean lines and functional design built to last.",
 	},
 	{
-		name: "Soffor",
+		name: "Sofas",
 		description:
-			"Eleganta soffor med mjuka former och dova toner. En balans mellan avslappning, lyx och nordisk estetik.",
+			"Elegant sofas with soft shapes and muted tones. A balance of relaxation, luxury, and Nordic aesthetics.",
 	},
 	{
-		name: "Kampanjpris",
+		name: "Sale",
 		description:
-			"Utvalda designfavoriter till reducerat pris under en begränsad tid.",
+			"Selected design favorites at a reduced price for a limited time.",
 	},
 ];
