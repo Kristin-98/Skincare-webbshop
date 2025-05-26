@@ -5,6 +5,7 @@ import { AccountCircle } from "@mui/icons-material";
 import {
   Box,
   Button,
+  Link,
   Menu,
   MenuItem,
   Link as MuiLink,
@@ -16,7 +17,6 @@ import Image from "next/image";
 import NextLink from "next/link";
 import React from "react";
 import CartWithDrawer from "./cart-with-drawer";
-import TemporaryDrawer from "./drawer";
 
 export default function Header() {
   const { data: session } = useSession();
@@ -51,16 +51,22 @@ export default function Header() {
       }}
     >
       {/* Vänster: Meny */}
-      <Box>
-        <TemporaryDrawer />
-      </Box>
+      <Box>{/* <TemporaryDrawer /> */}</Box>
 
       {/* Mitten: Logotyp */}
       <Box
         sx={{
-          position: "absolute",
-          left: "50%",
-          transform: "translateX(-50%)",
+          ...(isMobile
+            ? {
+                ml: 0,
+                position: "static",
+                transform: "none",
+              }
+            : {
+                position: "absolute",
+                left: "50%",
+                transform: "translateX(-50%)",
+              }),
         }}
       >
         <NextLink href="/" passHref legacyBehavior>
@@ -70,11 +76,9 @@ export default function Header() {
         </NextLink>
       </Box>
 
-      {/* Höger: Bara Cart på små skärmar, auth på större */}
-      <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+      <Box sx={{ display: "flex", alignItems: "center" }}>
         {user ? (
           <>
-            {/* Användarikonen med namn under */}
             <Box
               onClick={handleMenuOpen}
               sx={{
@@ -96,13 +100,22 @@ export default function Header() {
               open={Boolean(anchorEl)}
               onClose={handleMenuClose}
             >
+              {user?.isAdmin && (
+                <MenuItem
+                  onClick={handleMenuClose}
+                  component={Link}
+                  href="/admin"
+                >
+                  Admin
+                </MenuItem>
+              )}
               <MenuItem
                 onClick={() => {
                   signOut();
                   handleMenuClose();
                 }}
               >
-                Logga ut
+                Log out
               </MenuItem>
             </Menu>
           </>
@@ -112,10 +125,14 @@ export default function Header() {
             color="primary"
             onClick={() => signIn.social({ provider: "github" })}
           >
-            Logga in
+            Log in
           </Button>
         )}
-        <CartWithDrawer />
+
+        {/* Avstånd till Cart */}
+        <Box sx={{ ml: 6, mr: 3 }}>
+          <CartWithDrawer />
+        </Box>
       </Box>
     </Box>
   );
