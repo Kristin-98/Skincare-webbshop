@@ -19,7 +19,7 @@ model Product {
   image         String
   price         Float
   categoryId    String
-  category      Category   @relation(fields: [categoryId], references: [id])
+  categories    Category[] @relation("ProductCategories")
   stockQuantity Int
   orderRows     OrderRow[]
 }
@@ -134,5 +134,5 @@ model Category {
   id          String    @id @default(cuid())
   Name        String
   Description String
-  products    Product[]
+  products    Product[] @relation("ProductCategories")
 }
