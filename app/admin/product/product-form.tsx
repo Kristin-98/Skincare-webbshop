@@ -40,7 +40,6 @@ export default function ProductForm({ product }: Props) {
   return (
     <Box
       component="form"
-      data-cy="product-form"
       onSubmit={form.handleSubmit(handleSubmit)}
       sx={{
         display: "flex",
@@ -51,30 +50,18 @@ export default function ProductForm({ product }: Props) {
       }}
     >
       <TextField
-        slotProps={{
-          htmlInput: { "data-cy": "product-title" },
-          formHelperText: { "data-cy": "product-title-error" } as any,
-        }}
         label="Title"
         {...form.register("title")}
         error={Boolean(form.formState.errors.title)}
         helperText={form.formState.errors.title?.message}
       />
       <TextField
-        slotProps={{
-          htmlInput: { "data-cy": "product-description" },
-          formHelperText: { "data-cy": "product-description-error" } as any,
-        }}
         label="Description"
         {...form.register("description")}
         error={Boolean(form.formState.errors.description)}
         helperText={form.formState.errors.description?.message}
       />
       <TextField
-        slotProps={{
-          htmlInput: { "data-cy": "product-price" },
-          formHelperText: { "data-cy": "product-price-error" } as any,
-        }}
         label="Price"
         type="number"
         {...form.register("price")}
@@ -82,20 +69,12 @@ export default function ProductForm({ product }: Props) {
         helperText={form.formState.errors.price?.message}
       />
       <TextField
-         slotProps={{
-          htmlInput: { "data-cy": "product-categoryId" },
-          formHelperText: { "data-cy": "product-categoryId-error" } as any,
-         }}
          label="Category ID"
          {...form.register("categoryId")}
          error={Boolean(form.formState.errors.categoryId)}
          helperText={form.formState.errors.categoryId?.message}
       />
       <TextField
-      slotProps={{
-        htmlInput: { "data-cy": "product-stockQuantity" },
-        formHelperText: { "data-cy": "product-stockQuantity-error" } as any,
-      }}
       label="Stock Quantity"
          type="number"
       {...form.register("stockQuantity", { valueAsNumber: true })}
@@ -103,10 +82,6 @@ export default function ProductForm({ product }: Props) {
        helperText={form.formState.errors.stockQuantity?.message}
       />
       <TextField
-        slotProps={{
-          htmlInput: { "data-cy": "product-image" },
-          formHelperText: { "data-cy": "product-image-error" } as any,
-        }}
         label="Image URL"
         {...form.register("image")}
         error={Boolean(form.formState.errors.image)}

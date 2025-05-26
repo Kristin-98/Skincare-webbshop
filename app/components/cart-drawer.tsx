@@ -51,7 +51,7 @@ export default function CartDrawer({
             alignItems: "center",
           }}
         >
-          <Typography variant="h6">Din varukorg</Typography>
+          <Typography variant="h6">Cart</Typography>
           <IconButton onClick={onClose}>
             <CloseIcon />
           </IconButton>
@@ -61,7 +61,7 @@ export default function CartDrawer({
 
         <List>
           {cart.length === 0 ? (
-            <Typography textAlign="center">Varukorgen är tom.</Typography>
+            <Typography textAlign="center">Cart is empty</Typography>
           ) : (
             cart.map((item) => (
               <ListItem
@@ -98,7 +98,7 @@ export default function CartDrawer({
                     {item.title}
                   </Typography>
                   <Typography variant="body2">
-                    Pris: {item.price * item.quantity} kr
+                    Cost: {item.price * item.quantity} kr
                   </Typography>
                 </Box>
 
@@ -128,7 +128,7 @@ export default function CartDrawer({
             <Box
               sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}
             >
-              <Typography variant="subtitle1">Totalt:</Typography>
+              <Typography variant="subtitle1">Total:</Typography>
               <Typography
                 variant="subtitle1"
                 sx={{ fontWeight: "bold", color: theme.palette.primary.main }}
@@ -136,6 +136,9 @@ export default function CartDrawer({
                 {totalPrice.toFixed(2)} kr
               </Typography>
             </Box>
+            <Box
+              sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}
+            ></Box>
 
             <Button
               fullWidth
@@ -146,7 +149,7 @@ export default function CartDrawer({
                 router.push("/checkout");
               }}
             >
-              Till kassan
+              To Checkout
             </Button>
           </>
         )}
@@ -162,7 +165,7 @@ export default function CartDrawer({
                 onClose();
               }}
             >
-              Logga ut
+              Log out
             </Button>
           </>
         )}
