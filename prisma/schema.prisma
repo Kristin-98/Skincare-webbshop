@@ -132,7 +132,7 @@ model Verification {
 
 model Category {
   id          String    @id @default(cuid())
-  Name        String
-  Description String
+  name        String
+  description String
   products    Product[] @relation("ProductCategories")
 }
