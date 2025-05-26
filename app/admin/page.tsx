@@ -9,7 +9,7 @@ export default function AdminPage() {
         variant="h4"
         sx={{ display: "flex", justifyContent: "center", marginTop: 5 }}
       >
-        Hantera produkter
+        Handle products
       </Typography>
       <Box
         sx={{
