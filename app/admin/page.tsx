@@ -21,6 +21,7 @@ export default function AdminPage() {
       >
         <Link href="/admin/product/new/">
           <Button
+            data-cy="admin-add-product"
             type="submit"
             variant="contained"
             color="primary"
@@ -30,6 +31,7 @@ export default function AdminPage() {
         </Link>
         <Link href="/admin/orders/">
           <Button
+            data-cy="admin-add-product"
             type="submit"
             variant="contained"
             color="primary"
