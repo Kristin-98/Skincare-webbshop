@@ -1,16 +1,8 @@
 import { Box, Button, Typography } from "@mui/material";
 import Link from "next/link";
-import { redirect } from "next/navigation";
-import { serverAuth } from "../auth-server";
 import AdminCard from "./lib/admin-card";
 
-export default async function AdminPage() {
-  const session = await serverAuth();
-
-  if (!session?.user?.isAdmin) {
-    redirect("/");
-  }
-
+export default function AdminPage() {
   return (
     <main>
       <Typography
@@ -29,6 +21,7 @@ export default async function AdminPage() {
       >
         <Link href="/admin/product/new/">
           <Button
+            data-cy="admin-add-product"
             type="submit"
             variant="contained"
             color="primary"
@@ -38,6 +31,7 @@ export default async function AdminPage() {
         </Link>
         <Link href="/admin/orders/">
           <Button
+            data-cy="admin-add-product"
             type="submit"
             variant="contained"
             color="primary"
