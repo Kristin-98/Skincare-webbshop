@@ -61,7 +61,7 @@ export default function TemporaryDrawer() {
             fontWeight: "bold",            
           }}
         >
-          Customer Order History
+          Customer order
         </Link>
       </>
     );

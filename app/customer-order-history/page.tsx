@@ -6,13 +6,13 @@ import { auth } from "../auth";
 
 export default async function CustomerOrderHistory() {
   const session = await auth.api.getSession({
-    headers: await headers(), // you need to pass the headers object.
+    headers: await headers(),
   });
   if (!session) redirect("/signin");
 
   const orders = await db.order.findMany({
     where: { customerId: session.user.id },
-    // include: { orderRows: true, shippingAdress: true },
+    //include: { orderRows: true, shippingAdress: true },
   });
 
   return (
@@ -41,6 +41,7 @@ export default async function CustomerOrderHistory() {
       {orders.map((order) => (
         <Box
           sx={{
+            margin: "0.3rem",
             width: "100%",
             maxWidth: { xs: "100%", sm: 500, md: 600 },
             backgroundColor: "background.paper",
@@ -49,23 +50,29 @@ export default async function CustomerOrderHistory() {
             borderRadius: 2,
             boxShadow: 2,
           }}
+          key={order.orderNumber}
         >
-          <Typography
-            variant="body1"
+          <Box
             sx={{
-              fontSize: { xs: "0.9rem", sm: "1rem" },
               display: "flex",
               justifyContent: "space-between",
+              alignItems: "center",
+              flexWrap: "wrap",
             }}
           >
-            Ordernummer: {order.totalPrice}
+            <Box>
+              <Typography variant="body1">
+                Ordernummer: {order.orderNumber}
+              </Typography>
+              <Typography variant="body2">
+                Totalpris: {order.totalPrice} kr
+              </Typography>
+            </Box>
+
             <Box
               component="span"
               sx={{
-                display: "inline-block",
-                ml: 1,
-                px: 1.2,
-                py: 0.3,
+                padding: 1,
                 backgroundColor: "primary.main",
                 color: "#fff",
                 borderRadius: 1,
@@ -73,7 +80,7 @@ export default async function CustomerOrderHistory() {
             >
               Skickad
             </Box>
-          </Typography>
+          </Box>
         </Box>
       ))}
     </Box>
