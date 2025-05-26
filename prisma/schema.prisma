@@ -18,7 +18,8 @@ model Product {
   description   String
   image         String
   price         Float
-  categoryId    String
+  categoryId    String?    @default(cuid())
+  categories    Category[] @relation("ProductCategories")
   stockQuantity Int
   orderRows     OrderRow[]
 }
@@ -127,4 +128,11 @@ model Verification {
   updatedAt  DateTime?
 
   @@map("verification")
+}
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String
+  description String
+  products    Product[] @relation("ProductCategories")
 }

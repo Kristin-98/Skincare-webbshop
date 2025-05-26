@@ -14,4 +14,14 @@ export const auth = betterAuth({
            clientSecret: process.env.GITHUB_CLIENT_SECRET as string, 
         }, 
     }, 
+ // 👇 Lägg till detta block
+  transformSession: async ({ session, user }) => {
+    return {
+      ...session,
+      user: {
+        ...session.user,
+        isAdmin: user.isAdmin, // 👈 lägg till isAdmin i sessionen
+      },
+    };
+  },
 });
