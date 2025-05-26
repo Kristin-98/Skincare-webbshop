@@ -25,7 +25,6 @@ export default function IncreaseDecreaseBtn({
 			}}
 		>
 			<Button
-				data-cy="increase-quantity-button"
 				variant="contained"
 				color="primary"
 				sx={{ minWidth: "auto", padding: "4px" }}
@@ -35,7 +34,6 @@ export default function IncreaseDecreaseBtn({
 			</Button>
 			<Typography>{quantity}</Typography>
 			<Button
-				data-cy="decrease-quantity-button"
 				variant="contained"
 				color="primary"
 				sx={{ minWidth: "auto", padding: "4px" }}
