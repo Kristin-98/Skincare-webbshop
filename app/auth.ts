@@ -14,16 +14,14 @@ export const auth = betterAuth({
            clientSecret: process.env.GITHUB_CLIENT_SECRET as string, 
         }, 
     }, 
-   // ✅ Correct method to include custom user fields in session
- transformUser: async (user) => {
+ // 👇 Lägg till detta block
+  transformSession: async ({ session, user }) => {
     return {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      isAdmin: user.isAdmin, // ✅ CRITICAL
-      image: user.image,
-      createdAt: user.createdAt,
-      updatedAt: user.updatedAt,
+      ...session,
+      user: {
+        ...session.user,
+        isAdmin: user.isAdmin, // 👈 lägg till isAdmin i sessionen
+      },
     };
   },
 });

@@ -1,8 +1,16 @@
 import { Box, Button, Typography } from "@mui/material";
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { serverAuth } from "../auth-server";
 import AdminCard from "./lib/admin-card";
 
-export default function AdminPage() {
+export default async function AdminPage() {
+  const session = await serverAuth();
+
+  if (!session?.user?.isAdmin) {
+    redirect("/");
+  }
+
   return (
     <main>
       <Typography
