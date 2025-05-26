@@ -16,7 +16,13 @@ import IncreaseDecreaseBtn from "@/app/components/increase-decrease-btn";
 import { useCart } from "@/app/providers/cart-provider";
 import theme from "@/app/theme/theme";
 
-export default function OrderSummary() {
+interface OrderSummaryProps {
+  showControls?: boolean;
+}
+
+export default function OrderSummary({
+  showControls = true,
+}: OrderSummaryProps) {
   const { cart, removeFromCart, updateQuantity } = useCart();
 
   const totalPrice = cart.reduce(
@@ -28,7 +34,10 @@ export default function OrderSummary() {
     <List sx={{ width: "100%", maxWidth: 400, mx: "auto" }}>
       {cart.length === 0 ? (
         <ListItem>
-          <ListItemText sx={{ display: "flex", justifyContent: "center",}} primary="Your cart is empty" />
+          <ListItemText
+            sx={{ display: "flex", justifyContent: "center" }}
+            primary="Your cart is empty"
+          />
         </ListItem>
       ) : (
         cart.map((item) => (
@@ -75,20 +84,24 @@ export default function OrderSummary() {
                 primary={`Pris: ${item.price * item.quantity} SEK`}
               />
             </Box>
-            <IncreaseDecreaseBtn
-              productId={item.id}
-              quantity={item.quantity}
-              onUpdate={updateQuantity}
-            />
-            <IconButton
-              onClick={() => removeFromCart(item.id)}
-              sx={{
-                color: theme.palette.primary.main,
-                marginTop: 1,
-              }}
-            >
-              <DeleteIcon />
-            </IconButton>
+            {showControls && (
+              <>
+                <IncreaseDecreaseBtn
+                  productId={item.id}
+                  quantity={item.quantity}
+                  onUpdate={updateQuantity}
+                />
+                <IconButton
+                  onClick={() => removeFromCart(item.id)}
+                  sx={{
+                    color: theme.palette.primary.main,
+                    marginTop: 1,
+                  }}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </>
+            )}
           </ListItem>
         ))
       )}

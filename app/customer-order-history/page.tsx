@@ -36,7 +36,7 @@ export default async function CustomerOrderHistory() {
           fontSize: { xs: "1.5rem", sm: "2rem" },
         }}
       >
-        Orderhistorik
+        Your Orders
       </Typography>
 
       {orders.map((order) => (

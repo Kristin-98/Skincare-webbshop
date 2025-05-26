@@ -2,7 +2,6 @@
 import CloseIcon from "@mui/icons-material/Close";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
@@ -40,7 +39,7 @@ export default function OrderSummaryDialog() {
         open={open}
       >
         <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-          Ordernummer
+          Order
         </DialogTitle>
         <IconButton
           aria-label="close"
@@ -55,13 +54,8 @@ export default function OrderSummaryDialog() {
           <CloseIcon />
         </IconButton>
         <DialogContent>
-          <OrderSummary />
+          <OrderSummary showControls={false} />
         </DialogContent>
-        <DialogActions>
-          <Button autoFocus onClick={handleClose}>
-            Save changes
-          </Button>
-        </DialogActions>
       </BootstrapDialog>
     </React.Fragment>
   );
