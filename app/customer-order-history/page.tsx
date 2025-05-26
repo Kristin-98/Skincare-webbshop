@@ -64,11 +64,11 @@ export default async function CustomerOrderHistory() {
             <Box>
               <Typography variant="body1">
                 Ordernummer: {order.orderNumber}
-              </Typography>
-              <OrderSummaryDialog />
+              </Typography>              
               <Typography variant="body2">
                 Totalpris: {order.totalPrice} kr
               </Typography>
+              <OrderSummaryDialog/>
             </Box>
 
             <Box
