@@ -1,3 +1,4 @@
+import OrderStatusButton from "@/app/components/order-status-button";
 import { db } from "@/prisma/db";
 import {
   Box,
@@ -66,6 +67,11 @@ export default async function AdminOrderDetailPage({ params }: Props) {
         <Typography variant="body2" color="text.secondary">
           Order Status: {order.status}
         </Typography>
+
+        <OrderStatusButton
+          orderNumber={order.orderNumber}
+          initialStatus={order.status}
+        />
 
         <Divider sx={{ my: 3, width: "80%" }} />
 
