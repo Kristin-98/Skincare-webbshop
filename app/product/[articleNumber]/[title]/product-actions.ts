@@ -44,6 +44,7 @@ export async function deleteProduct(articleNumber: string) {
 	revalidatePath("/admin");
 }
 
+//denna ska kanske vara i admin? /h
 export async function updateOrderStatus(
 	orderNumber: string,
 	newStatus: OrderStatus
