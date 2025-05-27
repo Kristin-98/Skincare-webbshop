@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import GithubButton from "./providers/github-button";
 
@@ -12,34 +13,43 @@ export default function SignInPage() {
   };
 
   return (
-    <main style={{ maxWidth: 400, margin: "0 auto", padding: "2rem"}}>
+    <main style={{ maxWidth: 400, margin: "0 auto", padding: "2rem" }}>
       <h1>Login</h1>
-      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+      <form
+        onSubmit={handleSubmit}
+        style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+      >
         <label>
           Email
-          <input 
+          <input
             type="email"
             value={email}
-            onChange={e => setEmail(e.target.value)}
-            required
-            style={{ width: "100%", padding: "0.5rem", marginTop: "0.25rem"}}
-          />
-        </label>
-        <label>
-          Password
-          <input 
-            type="email"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             required
             style={{ width: "100%", padding: "0.5rem", marginTop: "0.25rem" }}
           />
         </label>
-        <button type="submit" style={{ padding: "0.75rem", marginTop: "0.5rem"}}>
+        <label>
+          Password
+          <input
+            type="email"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            style={{ width: "100%", padding: "0.5rem", marginTop: "0.25rem" }}
+          />
+        </label>
+        <button
+          type="submit"
+          style={{ padding: "0.75rem", marginTop: "0.5rem" }}
+        >
           Sign in
         </button>
-        <a href="/forgot-password" style={{ fontSize: "0.9rem", color: "#0070f3", textAlign: "right"}}>
-        Forgot password
+        <a
+          href="/forgot-password"
+          style={{ fontSize: "0.9rem", color: "#0070f3", textAlign: "right" }}
+        >
+          Forgot password
         </a>
       </form>
       <GithubButton />
