@@ -1,28 +1,29 @@
 "use server";
 
+import { auth } from "@/app/auth";
 import { CartItem } from "@/app/providers/cart-provider";
 import { db } from "@/prisma/db";
 import { Prisma } from "@prisma/client";
+import { headers } from "next/headers";
 
 export async function processCheckout(
   cart: CartItem[],
-  customerData: Prisma.UserCreateInput
+  shippingAdress: Prisma.AdressCreateInput
 ) {
-  console.log("Hej");
+  const session = await auth.api.getSession({
+    headers: await headers(), // you need to pass the headers object.
+  });
+
+  if (!session) {
+    throw new Error("Not logged in");
+  }
 
   if (cart.length === 0) {
     throw new Error("Cart is empty");
   }
 
-  const address = await db.address.create({
-    data: {
-      name: "John Doe",
-      streetAdressId: "123-Street-Id", // Note: This name seems odd — did you mean `streetAddress`?
-      email: "john@example.com",
-      phone: 1234567890,
-      postalCode: 12345,
-      city: "Sample City",
-    },
+  const address = await db.adress.create({
+    data: shippingAdress,
   });
 
   const totalPrice = cart.reduce(
@@ -34,12 +35,12 @@ export async function processCheckout(
     data: {
       shippingAdressId: address.id,
       totalPrice,
-      customerId: "some-customer-id",
+      customerId: session.user.id,
       orderRows: {
         create: cart.map((item) => ({
           productId: item.id,
           quantity: item.quantity,
-          price: item.price,
+          price: item.price, // vad händer om klinten sätter pris till 0??
         })),
       },
     },
