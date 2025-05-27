@@ -18,10 +18,16 @@ model Product {
   description   String
   image         String
   price         Float
-  categoryId    String?
   categories    Category[] @relation("ProductCategories")
   stockQuantity Int
   orderRows     OrderRow[]
+}
+
+model Category {
+  id          String    @id @default(cuid())
+  name        String
+  description String
+  products    Product[] @relation("ProductCategories")
 }
 
 model Order {
@@ -130,9 +136,4 @@ model Verification {
   @@map("verification")
 }
 
-model Category {
-  id          String    @id @default(cuid())
-  name        String
-  description String
-  products    Product[] @relation("ProductCategories")
-}
+
