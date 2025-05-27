@@ -13,15 +13,14 @@ export const auth = betterAuth({
            clientId: process.env.GITHUB_CLIENT_ID as string, 
            clientSecret: process.env.GITHUB_CLIENT_SECRET as string, 
         }, 
-    }, 
- // 👇 Lägg till detta block
-  transformSession: async ({ session, user }) => {
-    return {
-      ...session,
-      user: {
-        ...session.user,
-        isAdmin: user.isAdmin, // 👈 lägg till isAdmin i sessionen
-      },
-    };
-  },
+    },
+    user: {
+       additionalFields: {
+          isAdmin: {
+              type: "boolean"
+            } 
+        }
+    }
 });
+
+export type Session = typeof auth.$Infer.Session
