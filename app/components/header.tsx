@@ -81,7 +81,7 @@ export default function Header() {
 					endIcon={<ExpandMore />}
 					onClick={handleCatMenuOpen}
 				>
-					Kategorier
+					categories
 				</Button>
 
 				<Menu

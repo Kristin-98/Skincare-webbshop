@@ -9,9 +9,9 @@ export async function getAllCategories() {
 export async function getProductsByCategory(categoryId: string) {
 	if (!categoryId) throw new Error("CategoryId is required");
 
-	return await db.products.findMany({
+	return await db.product.findMany({
 		where: {
-			categoryId,
+			categories: { some: { id: categoryId } },
 		},
 	});
 }
