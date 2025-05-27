@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { auth } from "../auth";
-import OrderSummaryDialog from "../components/order-summary-dialog";
+import OrderProductList from "../components/order-product-list";
 
 export default async function CustomerOrderHistory() {
   const session = await auth.api.getSession({
@@ -74,7 +74,7 @@ export default async function CustomerOrderHistory() {
               <Typography variant="body2">
                 Totalpris: {order.totalPrice} kr
               </Typography>
-              <OrderSummaryDialog order={order} />
+              <OrderProductList orderRows={order.orderRows} />
             </Box>
 
             <Box
