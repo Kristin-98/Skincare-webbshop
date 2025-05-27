@@ -15,7 +15,7 @@ export default function Footer() {
           justifyContent: "center",
           alignItems: "center",
           textAlign: "center",
-          backgroundColor: "#a1887f",
+          backgroundColor: "palette.primary.light",
 
           "@media (min-width: 600px)": {
             display: "flex",
