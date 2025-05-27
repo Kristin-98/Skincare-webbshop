@@ -159,6 +159,13 @@ export default function Header() {
 									Admin
 								</MenuItem>
 							)}
+              <MenuItem
+                onClick={handleCatMenuClose}
+                component={Link}
+                href="/customer-order-history"
+              >
+                Your Orders
+              </MenuItem>
 							<MenuItem
 								onClick={() => {
 									signOut();
