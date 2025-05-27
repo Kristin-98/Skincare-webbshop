@@ -160,7 +160,7 @@ export default function Header() {
 								</MenuItem>
 							)}
               <MenuItem
-                onClick={handleMenuClose}
+                onClick={handleCatMenuClose}
                 component={Link}
                 href="/customer-order-history"
               >
