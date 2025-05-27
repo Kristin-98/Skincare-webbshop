@@ -13,7 +13,13 @@ export default async function CustomerOrderHistory() {
 
   const orders = await db.order.findMany({
     where: { customerId: session.user.id },
-    //include: { orderRows: true, shippingAdress: true },
+    include: {
+      orderRows: {
+        include: {
+          product: true,
+        },
+      },
+    },
   });
 
   return (
@@ -68,7 +74,7 @@ export default async function CustomerOrderHistory() {
               <Typography variant="body2">
                 Totalpris: {order.totalPrice} kr
               </Typography>
-              <OrderSummaryDialog order={order.orderNumber} />
+              <OrderSummaryDialog order={order} />
             </Box>
 
             <Box

@@ -7,6 +7,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
 import * as React from "react";
+import OrderProductList from "./order-product-list";
 
 interface OrderSummaryDialogProps {
   order: {
@@ -67,8 +68,7 @@ export default function OrderSummaryDialog({ order }: OrderSummaryDialogProps) {
           <CloseIcon />
         </IconButton>
         <DialogContent>
-          <OrderSummaryDialog order={order} />
-          {/* <OrderSummary showControls={false} /> */}
+          <OrderProductList order={order} />
         </DialogContent>
       </BootstrapDialog>
     </React.Fragment>
