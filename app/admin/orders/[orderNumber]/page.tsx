@@ -1,13 +1,7 @@
+import OrderProductList from "@/app/components/order-product-list";
 import OrderStatusButton from "@/app/components/order-status-button";
 import { db } from "@/prisma/db";
-import {
-  Box,
-  CardMedia,
-  List,
-  ListItem,
-  Typography,
-  Divider,
-} from "@mui/material";
+import { Box, Divider, Typography } from "@mui/material";
 
 interface Props {
   params: { orderNumber: string };
@@ -78,7 +72,8 @@ export default async function AdminOrderDetailPage({ params }: Props) {
         <Typography variant="h6" fontWeight="bold" sx={{ mb: 2 }}>
           Products in Order:
         </Typography>
-        <List sx={{ width: "100%", maxWidth: 600 }}>
+        <OrderProductList orderRows={order.orderRows} />
+        {/* <List sx={{ width: "100%", maxWidth: 600 }}>
           {order.orderRows.map((row) => (
             <ListItem
               key={row.id}
@@ -112,7 +107,7 @@ export default async function AdminOrderDetailPage({ params }: Props) {
               </Box>
             </ListItem>
           ))}
-        </List>
+        </List> */}
 
         <Divider sx={{ my: 3, width: "80%" }} />
 

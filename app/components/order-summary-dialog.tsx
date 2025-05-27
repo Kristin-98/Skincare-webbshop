@@ -7,7 +7,20 @@ import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
 import { styled } from "@mui/material/styles";
 import * as React from "react";
-import OrderSummary from "../checkout/lib/order-summary";
+
+interface OrderSummaryDialogProps {
+  order: {
+    orderRows: {
+      id: string;
+      product: {
+        title: string;
+        image: string;
+      };
+      price: number;
+      quantity: number;
+    }[];
+  };
+}
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -18,7 +31,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-export default function OrderSummaryDialog() {
+export default function OrderSummaryDialog({ order }: OrderSummaryDialogProps) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -54,7 +67,8 @@ export default function OrderSummaryDialog() {
           <CloseIcon />
         </IconButton>
         <DialogContent>
-          <OrderSummary showControls={false} />
+          <OrderSummaryDialog order={order} />
+          {/* <OrderSummary showControls={false} /> */}
         </DialogContent>
       </BootstrapDialog>
     </React.Fragment>
