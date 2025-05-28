@@ -2,6 +2,7 @@ import { db } from "@/prisma/db";
 import {
   Avatar,
   Box,
+  Divider,
   List,
   ListItem,
   ListItemAvatar,
@@ -13,7 +14,7 @@ interface Props {
 }
 
 export default async function ConfirmationPage({ params }: Props) {
-  const { orderNumber } = params;
+  const { orderNumber } = await params;
   const order = await db.order.findUnique({
     where: { orderNumber },
     include: {
@@ -47,6 +48,7 @@ export default async function ConfirmationPage({ params }: Props) {
         <Typography variant="h4" fontWeight="bold" sx={{ my: 2 }}>
           Tack för din order, {order.customer.name}!
         </Typography>
+        <Divider sx={{ my: 3, width: "80%" }} />
         <Typography variant="body1" sx={{ my: 2 }}>
           Ditt ordernummer är : {order.orderNumber}
         </Typography>
@@ -67,7 +69,7 @@ export default async function ConfirmationPage({ params }: Props) {
               <ListItemAvatar>
                 <Avatar
                   src={row.product.image}
-                  sx={{ width: 100, height: 100 }}                 
+                  sx={{ width: 100, height: 100 }}
                 />
               </ListItemAvatar>
               <Typography variant="body1">
@@ -79,6 +81,7 @@ export default async function ConfirmationPage({ params }: Props) {
         <Typography variant="h6" fontWeight="bold" mt={2}>
           Totalt : {totalPrice.toFixed(2)} kr
         </Typography>
+        <Divider sx={{ my: 3, width: "80%" }} />
         <Typography variant="body1" sx={{ my: 2 }}>
           Dina varor levereras till : <br /> {order.shippingAdress.name}
           <br />
