@@ -1,5 +1,5 @@
 "use client";
-import { addNewProduct } from "@/app/product/[articleNumber]/[title]/product-actions";
+import { addNewProduct } from "@/app/product-actions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { Prisma } from "@prisma/client";

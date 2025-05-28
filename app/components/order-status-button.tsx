@@ -2,7 +2,7 @@
 
 import { OrderStatus } from "@prisma/client";
 import { useState, useTransition } from "react";
-import { updateOrderStatus } from "../product/[articleNumber]/[title]/product-actions";
+import { updateOrderStatus } from "../product-actions";
 import { Button } from "@mui/material";
 
 interface OrderStatusButtonProps {

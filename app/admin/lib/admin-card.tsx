@@ -1,4 +1,4 @@
-import { getAllProducts } from "@/app/product/[articleNumber]/[title]/product-actions";
+import { getAllProducts } from "@/app/product-actions";
 import ProductCard from "@/app/components/product-card";
 import { Edit } from "@mui/icons-material";
 import { Box, Button, Container, Typography } from "@mui/material";

@@ -1,6 +1,6 @@
 "use client";
 
-import { updateProduct } from "@/app/product/[articleNumber]/[title]/product-actions";
+import { updateProduct } from "@/app/product-actions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Box, Button, TextField } from "@mui/material";
 import { Prisma, Product } from "@prisma/client";
