@@ -64,24 +64,31 @@ export default function Header() {
       sx={{
         px: { xs: 1, sm: 2 },
         py: 1,
-        color: "palette.primary.main",
+        color: theme.palette.primary.main,
         position: "sticky",
         top: 0,
         zIndex: 1000,
-        backgroundColor: "background.default",
+        backgroundColor: theme.palette.background.default,
         display: "flex",
         alignItems: "center",
-        justifyContent: "space-between",
         height: { xs: 70, sm: 100 },
       }}
     >
-      <Box>
+      {/* Vänster: Kategorier */}
+      <Box
+        sx={{
+          flex: 1,
+          display: "flex",
+          justifyContent: "flex-start",
+        }}
+      >
         <Button
           color="inherit"
           endIcon={<ExpandMore />}
           onClick={handleCatMenuOpen}
+          size={isMobile ? "small" : "medium"}
         >
-          categories
+          Categories
         </Button>
 
         <Menu
@@ -108,15 +115,17 @@ export default function Header() {
           position: { xs: "static", sm: "absolute" },
           left: { sm: "50%" },
           transform: { sm: "translateX(-50%)" },
+          zIndex: 1100,
         }}
       >
         <NextLink href="/" passHref legacyBehavior>
-          <MuiLink underline="none">
+          <MuiLink underline="none" sx={{ display: "inline-block" }}>
             <Image
               src="/logo.png"
               alt="Beauty"
-              width={isMobile ? 60 : 100} // <-- Mindre logga på mobil
+              width={isMobile ? 60 : 100}
               height={isMobile ? 60 : 100}
+              priority
             />
           </MuiLink>
         </NextLink>
@@ -125,8 +134,9 @@ export default function Header() {
       {/* Höger: Användarikon & varukorg */}
       <Box
         sx={{
-          marginLeft: "auto",
+          flex: 1,
           display: "flex",
+          justifyContent: "flex-end",
           alignItems: "center",
           gap: { xs: 1, sm: 3 },
         }}
@@ -141,6 +151,7 @@ export default function Header() {
                 flexDirection: "column",
                 alignItems: "center",
                 color: theme.palette.primary.main,
+                userSelect: "none",
               }}
             >
               <AccountCircle sx={{ fontSize: isMobile ? 32 : 48 }} />
@@ -166,7 +177,7 @@ export default function Header() {
                 </MenuItem>
               )}
               <MenuItem
-                onClick={handleCatMenuClose}
+                onClick={handleUserMenuClose}
                 component={Link}
                 href="/customer-order-history"
               >
@@ -193,9 +204,7 @@ export default function Header() {
           </Button>
         )}
 
-        <Box sx={{ ml: isMobile ? 1 : 4 }}>
-          <CartWithDrawer iconSize={isMobile ? "medium" : "large"} />
-        </Box>
+        <CartWithDrawer iconSize={isMobile ? "medium" : "large"} />
       </Box>
     </Box>
   );

@@ -70,7 +70,7 @@ export default async function AdminOrderPage({
           </Typography>
         ) : (
           orders.map((order) => (
-            <Card key={order.id} sx={{ width: "80%" }}>
+            <Card key={order.id} sx={{ width: "80%", wordBreak: "break-word",  }}>
               <CardContent>
                 <Typography variant="h6">
                   Order Number: {order.orderNumber}
@@ -92,6 +92,7 @@ export default async function AdminOrderPage({
                         : "success"
                     }
                     size="small"
+                    sx={{ fontWeight: 'bold' }}
                   />
                 </Box>
                 <Link href={`/admin/orders/${order.orderNumber}`}>

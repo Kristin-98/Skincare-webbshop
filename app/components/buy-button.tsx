@@ -9,6 +9,7 @@ import ProductToast from "./product-toast";
 
 interface BuyButtonProps {
   product: Product;
+ 
 }
 
 export default function BuyButton({ product }: BuyButtonProps) {

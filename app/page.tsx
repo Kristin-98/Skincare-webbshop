@@ -15,7 +15,7 @@ export default async function Home() {
           {products.map((product) => (
             <Grid size={{ xs: 12, sm: 6, md: 4 }} key={product.id}>
               <ProductCard product={product}>
-                <BuyButton product={product} />
+               <BuyButton product={product} />
               </ProductCard>
             </Grid>
           ))}
