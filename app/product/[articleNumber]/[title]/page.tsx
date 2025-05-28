@@ -10,7 +10,7 @@ export default async function ProductPage({ params }: Props) {
   const { articleNumber } = await params;
   const item = await db.product.findUnique({ where: { articleNumber } });
 
-  if (!item) return <h2>404: Produkten hittades inte</h2>;
+  if (!item) return <h2>404: Product not found</h2>;
 
   return (
     <main>
@@ -52,11 +52,23 @@ export default async function ProductPage({ params }: Props) {
               display: "flex",
               flexDirection: "column",
               width: { xs: "100%", sm: "50%" },
+              px: { xs: 3, sm: 0 },
             }}
           >
-            <Typography variant="h3">{item.title}</Typography>
+            <Typography
+              variant="h3"
+              sx={{
+                fontSize: {
+                  xs: "2rem",
+                  sm: "2rem",
+                  md: "2.5rem",
+                },
+              }}
+            >
+              {item.title}
+            </Typography>
             <Typography>
-              <strong>Artikelnummer:</strong> {item.articleNumber}
+              <strong>Art number:</strong> {item.articleNumber}
             </Typography>
             <Divider />
             <Typography>{item.description}</Typography>
@@ -70,7 +82,7 @@ export default async function ProductPage({ params }: Props) {
               }}
             >
               <Typography variant="body1" sx={{ marginTop: 2 }}>
-                <strong>Pris:</strong> {item.price} kr
+                <strong>Price:</strong> {item.price} kr
               </Typography>
               <BuyButton product={item} />
             </Box>

@@ -45,77 +45,135 @@ export default function OrderSummary({
             key={item.id}
             sx={{
               display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              gap: 2,
-              padding: 2,
+              flexDirection: "column",
+              gap: 1,
+              py: 2,
+              px: 0,
               borderBottom: "1px solid #ddd",
             }}
           >
-            <ListItemAvatar>
-              <Avatar
-                src={item.image}
-                alt={item.title}
-                sx={{ width: 100, height: 100 }}
-              />
-            </ListItemAvatar>
-            <ListItemText
-              primary={
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontWeight: "bold",
-                    color: theme.palette.primary.light,
-                  }}
-                >
-                  {item.title}
-                </Typography>
-              }
-              secondary={`Antal: ${item.quantity}`}
-            />
+            {/* Titel */}
+            <Typography
+              variant="h6"
+              sx={{
+                fontWeight: "bold",
+                color: theme.palette.primary.light,
+                fontSize: { xs: "1rem", sm: "1.2rem" },
+              }}
+            >
+              {item.title}
+            </Typography>
+
+            {/* Bild + info + knappar */}
             <Box
               sx={{
                 display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-end",
+                width: "100%",
+                gap: 2,
+                alignItems: "center",
+                justifyContent: "space-between",
+                flexWrap: "nowrap",
               }}
             >
-              <ListItemText
-                primary={`Pris: ${item.price * item.quantity} SEK`}
-              />
-            </Box>
-            {showControls && (
-              <>
-                <IncreaseDecreaseBtn
-                  productId={item.id}
-                  quantity={item.quantity}
-                  onUpdate={updateQuantity}
+              {/* Bild */}
+              <ListItemAvatar>
+                <Avatar
+                  src={item.image}
+                  alt={item.title}
+                  sx={{ width: 100, height: 100 }}
                 />
-                <IconButton
-                  onClick={() => removeFromCart(item.id)}
+              </ListItemAvatar>
+
+              {/* Amount & Price */}
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  flexGrow: 1,
+                  minWidth: 0,
+                }}
+              >
+                <Typography
                   sx={{
-                    color: theme.palette.primary.main,
-                    marginTop: 1,
+                    fontSize: { xs: "0.75rem", sm: "0.9rem" },
+                    fontWeight: "bold",
+                    whiteSpace: "nowrap",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
                   }}
                 >
-                  <DeleteIcon />
-                </IconButton>
-              </>
-            )}
+                  Amount: {item.quantity}
+                </Typography>
+
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-start",
+                    minWidth: 0,
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontSize: { xs: "0.75rem", sm: "0.9rem" },
+                      fontWeight: "bold",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    Price:
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontSize: { xs: "0.75rem", sm: "0.9rem" },
+                      fontWeight: "bold",
+                      wordBreak: "break-word",
+                    }}
+                  >
+                    {item.price * item.quantity} SEK
+                  </Typography>
+                </Box>
+              </Box>
+
+              {/* Knappar (om aktiverade) */}
+              {showControls && (
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 1,
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  <IncreaseDecreaseBtn
+                    productId={item.id}
+                    quantity={item.quantity}
+                    onUpdate={updateQuantity}
+                  />
+                  <IconButton
+                    onClick={() => removeFromCart(item.id)}
+                    sx={{
+                      color: theme.palette.primary.main,
+                    }}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </Box>
+              )}
+            </Box>
           </ListItem>
         ))
       )}
       {cart.length > 0 && (
         <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
           <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-            Totalpris:
+            Total:
           </Typography>
           <Typography
             variant="h6"
             sx={{ fontWeight: "bold", color: theme.palette.primary.main }}
           >
-            {cart.reduce((sum, item) => sum + item.price * item.quantity, 0)}{" "}
-            SEK
+            {totalPrice} SEK
           </Typography>
         </Box>
       )}
