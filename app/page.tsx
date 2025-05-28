@@ -13,7 +13,7 @@ export default async function Home() {
       <Container>
         <Grid container spacing={2}>
           {products.map((product) => (
-            <Grid size={{ xs: 6, md: 4 }} key={product.id}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={product.id}>
               <ProductCard product={product}>
                 <BuyButton product={product} />
               </ProductCard>

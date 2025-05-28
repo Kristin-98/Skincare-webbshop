@@ -28,9 +28,7 @@ export default function ProductCard({ product, children }: Props) {
       >
         {product.title}
       </Typography>
-      <Typography variant="body2">
-        {product.articleNumber}
-      </Typography>
+      <Typography variant="body2">{product.articleNumber}</Typography>
       <Box
         sx={{
           display: "flex",

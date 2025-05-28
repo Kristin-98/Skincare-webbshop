@@ -37,9 +37,8 @@ export default function Header() {
     <Box
       component="header"
       sx={{
-        px: 2,
+        px: { xs: 1, sm: 2 },
         py: 1,
-        color: "palette.primary.main",
         position: "sticky",
         top: 0,
         zIndex: 1000,
@@ -47,7 +46,7 @@ export default function Header() {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        height: 100,
+        height: { xs: 70, sm: 100 },
       }}
     >
       {/* Vänster: Meny */}
@@ -56,27 +55,31 @@ export default function Header() {
       {/* Mitten: Logotyp */}
       <Box
         sx={{
-          ...(isMobile
-            ? {
-                ml: 0,
-                position: "static",
-                transform: "none",
-              }
-            : {
-                position: "absolute",
-                left: "50%",
-                transform: "translateX(-50%)",
-              }),
+          position: { xs: "static", sm: "absolute" },
+          left: { sm: "50%" },
+          transform: { sm: "translateX(-50%)" },
         }}
       >
         <NextLink href="/" passHref legacyBehavior>
           <MuiLink underline="none">
-            <Image src="/logo.png" alt="Beauty" width={100} height={100} />
+            <Image
+              src="/logo.png"
+              alt="Beauty"
+              width={isMobile ? 60 : 100} // <-- Mindre logga på mobil
+              height={isMobile ? 60 : 100}
+            />
           </MuiLink>
         </NextLink>
       </Box>
 
-      <Box sx={{ display: "flex", alignItems: "center" }}>
+      <Box
+        sx={{
+          marginLeft: "auto",
+          display: "flex",
+          alignItems: "center",
+          gap: { xs: 1, sm: 3 },
+        }}
+      >
         {user ? (
           <>
             <Box
@@ -89,10 +92,12 @@ export default function Header() {
                 color: theme.palette.primary.main,
               }}
             >
-              <AccountCircle sx={{ fontSize: 48 }} />
-              <Typography variant="caption" sx={{ mt: 0.5 }}>
-                {user.name ?? "Användare"}
-              </Typography>
+              <AccountCircle sx={{ fontSize: isMobile ? 32 : 48 }} />
+              {!isMobile && (
+                <Typography variant="caption" sx={{ mt: 0.5 }}>
+                  {user.name ?? "User"}
+                </Typography>
+              )}
             </Box>
 
             <Menu
@@ -123,6 +128,7 @@ export default function Header() {
           <Button
             variant="outlined"
             color="primary"
+            size={isMobile ? "small" : "medium"}
             onClick={() => signIn.social({ provider: "github" })}
           >
             Log in
@@ -130,8 +136,8 @@ export default function Header() {
         )}
 
         {/* Avstånd till Cart */}
-        <Box sx={{ ml: 6, mr: 3 }}>
-          <CartWithDrawer />
+        <Box sx={{ ml: isMobile ? 1 : 4 }}>
+          <CartWithDrawer iconSize={isMobile ? "medium" : "large"} />
         </Box>
       </Box>
     </Box>

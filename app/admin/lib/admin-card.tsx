@@ -14,9 +14,9 @@ export default async function AdminCard() {
       <Container>
         <Grid container spacing={2}>
           {products.map((product) => (
-            <Grid size={{ xs: 6, md: 4 }} key={product.id}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={product.id}>
               <ProductCard product={product}>
-                <Box sx={{display: "block",}}>
+                <Box sx={{ display: "block" }}>
                   <Typography variant="body2">
                     Category ID: {product.categoryId}
                   </Typography>
@@ -41,7 +41,7 @@ export default async function AdminCard() {
                     </Link>
                   </Button>
                   <DeleteBtn productId={product.articleNumber} />
-                </Box>                
+                </Box>
               </ProductCard>
             </Grid>
           ))}
