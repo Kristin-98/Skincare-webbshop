@@ -1,7 +1,8 @@
 "use client";
 
 import { signIn, signOut, useSession } from "@/app/auth-client";
-import { AccountCircle } from "@mui/icons-material";
+import { getAllCategories } from "@/app/category/category-actions";
+import { AccountCircle, ExpandMore } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -15,8 +16,13 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import NextLink from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CartWithDrawer from "./cart-with-drawer";
+
+interface Category {
+  id: string;
+  name: string;
+}
 
 export default function Header() {
   const { data: session } = useSession();
@@ -25,12 +31,31 @@ export default function Header() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
+  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
+    null
+  );
+  const [anchorElCat, setAnchorElCat] = React.useState<null | HTMLElement>(
+    null
+  );
+
+  const [categories, setCategories] = useState<Category[]>([]);
+
+  useEffect(() => {
+    getAllCategories().then(setCategories).catch(console.error);
+  }, []);
+
+  const handleUserMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElUser(event.currentTarget);
   };
-  const handleMenuClose = () => {
-    setAnchorEl(null);
+  const handleUserMenuClose = () => {
+    setAnchorElUser(null);
+  };
+
+  const handleCatMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElCat(event.currentTarget);
+  };
+  const handleCatMenuClose = () => {
+    setAnchorElCat(null);
   };
 
   return (
@@ -39,6 +64,7 @@ export default function Header() {
       sx={{
         px: { xs: 1, sm: 2 },
         py: 1,
+        color: "palette.primary.main",
         position: "sticky",
         top: 0,
         zIndex: 1000,
@@ -49,8 +75,32 @@ export default function Header() {
         height: { xs: 70, sm: 100 },
       }}
     >
-      {/* Vänster: Meny */}
-      <Box>{/* <TemporaryDrawer /> */}</Box>
+      <Box>
+        <Button
+          color="inherit"
+          endIcon={<ExpandMore />}
+          onClick={handleCatMenuOpen}
+        >
+          categories
+        </Button>
+
+        <Menu
+          anchorEl={anchorElCat}
+          open={Boolean(anchorElCat)}
+          onClose={handleCatMenuClose}
+        >
+          {categories.map((category) => (
+            <MenuItem
+              key={category.id}
+              onClick={handleCatMenuClose}
+              component={NextLink}
+              href={`/categories/${category.id}`}
+            >
+              {category.name}
+            </MenuItem>
+          ))}
+        </Menu>
+      </Box>
 
       {/* Mitten: Logotyp */}
       <Box
@@ -72,6 +122,7 @@ export default function Header() {
         </NextLink>
       </Box>
 
+      {/* Höger: Användarikon & varukorg */}
       <Box
         sx={{
           marginLeft: "auto",
@@ -101,13 +152,13 @@ export default function Header() {
             </Box>
 
             <Menu
-              anchorEl={anchorEl}
-              open={Boolean(anchorEl)}
-              onClose={handleMenuClose}
+              anchorEl={anchorElUser}
+              open={Boolean(anchorElUser)}
+              onClose={handleUserMenuClose}
             >
               {user?.isAdmin && (
                 <MenuItem
-                  onClick={handleMenuClose}
+                  onClick={handleUserMenuClose}
                   component={Link}
                   href="/admin"
                 >
@@ -115,9 +166,16 @@ export default function Header() {
                 </MenuItem>
               )}
               <MenuItem
+                onClick={handleCatMenuClose}
+                component={Link}
+                href="/customer-order-history"
+              >
+                Your Orders
+              </MenuItem>
+              <MenuItem
                 onClick={() => {
                   signOut();
-                  handleMenuClose();
+                  handleUserMenuClose();
                 }}
               >
                 Log out
@@ -135,7 +193,6 @@ export default function Header() {
           </Button>
         )}
 
-        {/* Avstånd till Cart */}
         <Box sx={{ ml: isMobile ? 1 : 4 }}>
           <CartWithDrawer iconSize={isMobile ? "medium" : "large"} />
         </Box>

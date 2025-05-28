@@ -1,5 +1,5 @@
-import { getAllProducts } from "@/app/actions";
 import ProductCard from "@/app/components/product-card";
+import { getAllProducts } from "@/app/product/[articleNumber]/[title]/product-actions";
 import { Edit } from "@mui/icons-material";
 import { Box, Button, Container, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid2";
