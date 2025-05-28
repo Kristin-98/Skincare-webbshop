@@ -61,7 +61,7 @@ export default async function ConfirmationPage({ params }: Props) {
                 display: "flex",
                 alignItems: "center",
                 gap: 2,
-                justifyContent: "center",
+                justifyContent: "left",
               }}
             >
               <ListItemAvatar>
@@ -76,7 +76,7 @@ export default async function ConfirmationPage({ params }: Props) {
                 src={row.product.image}
               ></CardMedia> */}
               <Typography variant="body1">
-                {row.product.title} : {row.quantity} st {row.price} kr
+                {row.product.title} : {row.quantity}st {row.price}kr
               </Typography>
             </ListItem>
           ))}
