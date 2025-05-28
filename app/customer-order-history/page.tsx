@@ -74,7 +74,7 @@ export default async function CustomerOrderHistory() {
               <Typography variant="body2">
                 Totalpris: {order.totalPrice} kr
               </Typography>
-              <OrderProductList orderRows={order.orderRows} />
+              <OrderProductList orderRows={order.orderRows} orderStatus={order.status} />
             </Box>
 
             <Box

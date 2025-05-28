@@ -72,7 +72,10 @@ export default async function AdminOrderDetailPage({ params }: Props) {
         <Typography variant="h6" fontWeight="bold" sx={{ mb: 2 }}>
           Products in Order:
         </Typography>
-        <OrderProductList orderRows={order.orderRows} />
+        <OrderProductList
+          orderRows={order.orderRows}
+          orderStatus={order.status}
+        />
         {/* <List sx={{ width: "100%", maxWidth: 600 }}>
           {order.orderRows.map((row) => (
             <ListItem
