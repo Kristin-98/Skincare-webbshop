@@ -76,30 +76,9 @@ export default function Header() {
 			}}
 		>
 			<Box>
-				<Button
-					color="inherit"
-					endIcon={<ExpandMore />}
-					onClick={handleCatMenuOpen}
-				>
-					categories
+				<Button color="inherit" component={NextLink} href="/category">
+					Kategorier
 				</Button>
-
-				<Menu
-					anchorEl={anchorElCat}
-					open={Boolean(anchorElCat)}
-					onClose={handleCatMenuClose}
-				>
-					{categories.map((category) => (
-						<MenuItem
-							key={category.id}
-							onClick={handleCatMenuClose}
-							component={NextLink}
-							href={`/categories/${category.id}`}
-						>
-							{category.name}
-						</MenuItem>
-					))}
-				</Menu>
 			</Box>
 
 			{/* Mitten: Logotyp */}
