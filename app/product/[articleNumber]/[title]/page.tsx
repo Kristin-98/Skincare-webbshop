@@ -55,7 +55,18 @@ export default async function ProductPage({ params }: Props) {
               px: { xs: 3, sm: 0 },
             }}
           >
-            <Typography variant="h3">{item.title}</Typography>
+            <Typography
+              variant="h3"
+              sx={{
+                fontSize: {
+                  xs: "2rem",
+                  sm: "2rem",
+                  md: "2.5rem",
+                },
+              }}
+            >
+              {item.title}
+            </Typography>
             <Typography>
               <strong>Art number:</strong> {item.articleNumber}
             </Typography>

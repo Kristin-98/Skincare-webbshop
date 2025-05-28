@@ -45,7 +45,11 @@ export default function CartDrawer({
     <Drawer anchor="right" open={open} onClose={onClose}>
       <Box
         sx={{
-          width: 350,
+          width: {
+            xs: 280,
+            sm: 320,
+            md: 350,
+          },
           height: "100%",
           display: "flex",
           flexDirection: "column",
@@ -78,54 +82,86 @@ export default function CartDrawer({
                   key={item.id}
                   sx={{
                     display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
+                    flexDirection: "column",
                     gap: 1,
+                    py: 2,
+                    px: 0,
                     borderBottom: "1px solid #ddd",
-                    py: 1,
                   }}
                 >
-                  <ListItemAvatar sx={{ minWidth: "unset", mr: 1 }}>
-                    <Avatar
-                      src={item.image}
-                      alt={item.title}
-                      sx={{ width: 60, height: 60 }}
-                      variant="square"
-                    />
-                  </ListItemAvatar>
+                  {/* Titel ovanför */}
+                  <Typography
+                    variant="h6"
+                    sx={{
+                      fontWeight: "bold",
+                      color: theme.palette.primary.light,
+                      fontSize: { xs: 14, sm: "1.2rem" },
+                    }}
+                  >
+                    {item.title}
+                  </Typography>
 
-                  <Box sx={{ flexGrow: 1, minWidth: 0 }}>
-                    <Typography
-                      variant="subtitle2"
+                  <Box
+                    sx={{
+                      display: "flex",
+                      width: "100%",
+                      gap: 2,
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      flexWrap: "nowrap",
+                    }}
+                  >
+                    <ListItemAvatar>
+                      <Avatar
+                        src={item.image}
+                        alt={item.title}
+                        sx={{ width: 80, height: 80 }}
+                        variant="square"
+                      />
+                    </ListItemAvatar>
+
+                    <Box
                       sx={{
-                        fontWeight: "bold",
-                        color: theme.palette.primary.light,
-                        whiteSpace: "nowrap",
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        flexGrow: 1,
+                        minWidth: 0,
                       }}
                     >
-                      {item.title}
-                    </Typography>
-                    <Typography variant="body2">
-                      Cost: {item.price * item.quantity} kr
-                    </Typography>
-                  </Box>
+                      <Typography
+                        sx={{
+                          fontSize: { xs: "0.75rem", sm: "0.9rem" },
+                          fontWeight: "bold",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
+                        Amount: {item.quantity}
+                      </Typography>
+                      <Typography
+                        sx={{
+                          fontSize: { xs: "0.75rem", sm: "0.9rem" },
+                          fontWeight: "bold",
+                        }}
+                      >
+                        Price: {item.price * item.quantity} kr
+                      </Typography>
+                    </Box>
 
-                  <Box>
-                    <IncreaseDecreaseBtn
-                      productId={item.id}
-                      quantity={item.quantity}
-                      onUpdate={updateQuantity}
-                    />
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                      <IncreaseDecreaseBtn
+                        productId={item.id}
+                        quantity={item.quantity}
+                        onUpdate={updateQuantity}
+                      />
+                      <IconButton
+                        onClick={() => removeFromCart(item.id)}
+                        sx={{ color: theme.palette.primary.main }}
+                      >
+                        <DeleteIcon />
+                      </IconButton>
+                    </Box>
                   </Box>
-
-                  <IconButton
-                    onClick={() => removeFromCart(item.id)}
-                    sx={{ color: theme.palette.primary.main }}
-                  >
-                    <DeleteIcon />
-                  </IconButton>
                 </ListItem>
               ))
             )}
@@ -163,7 +199,7 @@ export default function CartDrawer({
 
         {/* ---- Foten ---- */}
         {user && (
-          <Box sx={{ mt: 2 }}>
+          <Box sx={{ mt: 2, mb: 2 }}>
             {user.isAdmin && (
               <Button
                 fullWidth
