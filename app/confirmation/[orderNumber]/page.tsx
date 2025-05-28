@@ -70,11 +70,6 @@ export default async function ConfirmationPage({ params }: Props) {
                   sx={{ width: 100, height: 100 }}                 
                 />
               </ListItemAvatar>
-              {/* <CardMedia
-                sx={{ height: 300, objectFit: "contain" }}
-                component="img"
-                src={row.product.image}
-              ></CardMedia> */}
               <Typography variant="body1">
                 {row.product.title} : {row.quantity}st {row.price}kr
               </Typography>
