@@ -134,7 +134,7 @@ export default function Header() {
         {user ? (
           <>
             <Box
-              onClick={handleMenuOpen}
+              onClick={handleUserMenuOpen}
               sx={{
                 cursor: "pointer",
                 display: "flex",

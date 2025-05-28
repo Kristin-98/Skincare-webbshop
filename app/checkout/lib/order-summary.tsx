@@ -38,10 +38,6 @@ export default function OrderSummary({
             sx={{ display: "flex", justifyContent: "center" }}
             primary="Your cart is empty"
           />
-          <ListItemText
-            sx={{ display: "flex", justifyContent: "center" }}
-            primary="Your cart is empty"
-          />
         </ListItem>
       ) : (
         cart.map((item) => (
@@ -51,11 +47,12 @@ export default function OrderSummary({
               display: "flex",
               flexDirection: "column",
               gap: 1,
-              paddingY: 2,
-              paddingX: 0,
+              py: 2,
+              px: 0,
               borderBottom: "1px solid #ddd",
             }}
           >
+            {/* Titel */}
             <Typography
               variant="h6"
               sx={{
@@ -67,6 +64,7 @@ export default function OrderSummary({
               {item.title}
             </Typography>
 
+            {/* Bild + info + knappar */}
             <Box
               sx={{
                 display: "flex",
@@ -77,6 +75,7 @@ export default function OrderSummary({
                 flexWrap: "nowrap",
               }}
             >
+              {/* Bild */}
               <ListItemAvatar>
                 <Avatar
                   src={item.image}
@@ -85,6 +84,7 @@ export default function OrderSummary({
                 />
               </ListItemAvatar>
 
+              {/* Amount & Price */}
               <Box
                 sx={{
                   display: "flex",
@@ -135,47 +135,32 @@ export default function OrderSummary({
                 </Box>
               </Box>
 
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 1,
-                  whiteSpace: "nowrap",
-                }}
-              >
-                <IncreaseDecreaseBtn
-                  productId={item.id}
-                  quantity={item.quantity}
-                  onUpdate={updateQuantity}
-                />
-                <IconButton
-                  onClick={() => removeFromCart(item.id)}
+              {/* Knappar (om aktiverade) */}
+              {showControls && (
+                <Box
                   sx={{
-                    color: theme.palette.primary.main,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 1,
+                    whiteSpace: "nowrap",
                   }}
                 >
-                  <DeleteIcon />
-                </IconButton>
-              </Box>
+                  <IncreaseDecreaseBtn
+                    productId={item.id}
+                    quantity={item.quantity}
+                    onUpdate={updateQuantity}
+                  />
+                  <IconButton
+                    onClick={() => removeFromCart(item.id)}
+                    sx={{
+                      color: theme.palette.primary.main,
+                    }}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </Box>
+              )}
             </Box>
-            {showControls && (
-              <>
-                <IncreaseDecreaseBtn
-                  productId={item.id}
-                  quantity={item.quantity}
-                  onUpdate={updateQuantity}
-                />
-                <IconButton
-                  onClick={() => removeFromCart(item.id)}
-                  sx={{
-                    color: theme.palette.primary.main,
-                    marginTop: 1,
-                  }}
-                >
-                  <DeleteIcon />
-                </IconButton>
-              </>
-            )}
           </ListItem>
         ))
       )}
@@ -188,8 +173,7 @@ export default function OrderSummary({
             variant="h6"
             sx={{ fontWeight: "bold", color: theme.palette.primary.main }}
           >
-            {cart.reduce((sum, item) => sum + item.price * item.quantity, 0)}{" "}
-            SEK
+            {totalPrice} SEK
           </Typography>
         </Box>
       )}
