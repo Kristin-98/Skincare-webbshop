@@ -24,13 +24,11 @@ export default function ProductCard({ product, children }: Props) {
       </Link>
       <Typography
         variant="h6"
-        sx={{ boxSizing: "border-box", paddingLeft: 0.5 }}
+        sx={{ boxSizing: "border-box", paddingLeft: 2 }}
       >
         {product.title}
       </Typography>
-      <Typography variant="body2">
-        {product.articleNumber}
-      </Typography>
+      <Typography variant="body2" sx={{ paddingLeft: 2 }}>{product.articleNumber}</Typography>
       <Box
         sx={{
           display: "flex",
@@ -40,9 +38,9 @@ export default function ProductCard({ product, children }: Props) {
       >
         <Typography
           variant="body1"
-          sx={{ boxSizing: "border-box", paddingLeft: 0.5 }}
+          sx={{ boxSizing: "border-box", paddingLeft: 2 }}
         >
-          Pris: {product.price} kr
+          Price: {product.price} kr
         </Typography>
         {children}
       </Box>

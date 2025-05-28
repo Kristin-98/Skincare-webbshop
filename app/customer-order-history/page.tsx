@@ -72,10 +72,10 @@ export default async function CustomerOrderHistory() {
           >
             <Box>
               <Typography variant="body1">
-                Ordernumber: {order.orderNumber}
+                Order number: {order.orderNumber}
               </Typography>
               <Typography variant="body2">
-                Totalprice: {order.totalPrice} kr
+                Total: {order.totalPrice} kr
               </Typography>
               <OrderProductList
                 orderRows={order.orderRows}
