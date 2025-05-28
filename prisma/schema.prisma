@@ -60,7 +60,7 @@ model Adress {
   name         String
   streetAdress String
   email        String
-  phone        Int
+  phone        String
   postalCode   Int
   city         String
   Order        Order[]

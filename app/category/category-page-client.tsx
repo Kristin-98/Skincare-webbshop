@@ -15,6 +15,8 @@ interface Product {
 	image: string;
 	price: number;
 	articleNumber: string;
+	description: string;
+	stockQuantity: number;
 	categories: Category[];
 }
 
@@ -42,7 +44,7 @@ export default function CategoryPageClient({
 	return (
 		<Box sx={{ p: 4 }}>
 			<Typography variant="h4" mb={2}>
-				Filtrera produkter
+				Filter Products
 			</Typography>
 			<Box sx={{ display: "flex", gap: 2, mb: 4, flexWrap: "wrap" }}>
 				{categories.map((cat) => (
