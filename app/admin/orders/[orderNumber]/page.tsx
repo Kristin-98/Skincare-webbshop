@@ -76,42 +76,6 @@ export default async function AdminOrderDetailPage({ params }: Props) {
           orderRows={order.orderRows}
           orderStatus={order.status}
         />
-        {/* <List sx={{ width: "100%", maxWidth: 600 }}>
-          {order.orderRows.map((row) => (
-            <ListItem
-              key={row.id}
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 2,
-                borderBottom: "1px solid #eee",
-                py: 1,
-              }}
-            >
-              <CardMedia
-                sx={{ width: 80, height: 80, objectFit: "contain" }}
-                component="img"
-                src={row.product.image}
-                alt={row.product.title}
-              />
-              <Box>
-                <Typography variant="body1" fontWeight="bold">
-                  {row.product.title}
-                </Typography>
-                <Typography variant="body2">
-                  Quantity: {row.quantity} pc(s)
-                </Typography>
-                <Typography variant="body2">
-                  Price per item: {row.price} kr
-                </Typography>
-                <Typography variant="body2">
-                  Total for item: {row.price * row.quantity} kr
-                </Typography>
-              </Box>
-            </ListItem>
-          ))}
-        </List> */}
-
         <Divider sx={{ my: 3, width: "80%" }} />
 
         <Typography variant="h5" fontWeight="bold" mt={2}>

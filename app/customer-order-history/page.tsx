@@ -20,6 +20,9 @@ export default async function CustomerOrderHistory() {
         },
       },
     },
+    orderBy: {
+      createdAt: "desc",
+    }
   });
 
   return (
@@ -69,24 +72,15 @@ export default async function CustomerOrderHistory() {
           >
             <Box>
               <Typography variant="body1">
-                Ordernummer: {order.orderNumber}
+                Ordernumber: {order.orderNumber}
               </Typography>
               <Typography variant="body2">
-                Totalpris: {order.totalPrice} kr
+                Totalprice: {order.totalPrice} kr
               </Typography>
-              <OrderProductList orderRows={order.orderRows} orderStatus={order.status} />
-            </Box>
-
-            <Box
-              component="span"
-              sx={{
-                padding: 1,
-                backgroundColor: "primary.main",
-                color: "#fff",
-                borderRadius: 1,
-              }}
-            >
-              Skickad
+              <OrderProductList
+                orderRows={order.orderRows}
+                orderStatus={order.status}
+              />
             </Box>
           </Box>
         </Box>
