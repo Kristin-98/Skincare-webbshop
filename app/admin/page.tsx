@@ -14,6 +14,7 @@ export default function AdminPage() {
       <Box
         sx={{
           display: "flex",
+          flexWrap: "wrap",
           justifyContent: "center",
           marginTop: 3,
           gap: 1,

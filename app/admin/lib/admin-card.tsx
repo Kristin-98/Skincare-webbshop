@@ -1,5 +1,5 @@
-import { getAllProducts } from "@/app/product-actions";
 import ProductCard from "@/app/components/product-card";
+import { getAllProducts } from "@/app/product/[articleNumber]/[title]/product-actions";
 import { Edit } from "@mui/icons-material";
 import { Box, Button, Container, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid2";
@@ -14,7 +14,7 @@ export default async function AdminCard() {
 			<Container>
 				<Grid container spacing={2}>
 					{products.map((product) => (
-						<Grid size={{ xs: 6, md: 4 }} key={product.id}>
+						<Grid size={{ xs: 12, sm: 6, md: 4 }} key={product.id}>
 							<ProductCard product={product}>
 								<Box sx={{ display: "block" }}>
 									<Typography variant="body2">

@@ -5,13 +5,17 @@ import { useState } from "react";
 import CartDrawer from "./cart-drawer";
 import CartIcon from "./cart-icon";
 
-export default function CartWithDrawer() {
+interface Props {
+  iconSize?: "small" | "medium" | "large";
+}
+
+export default function CartWithDrawer({ iconSize = "medium" }: Props) {
   const [open, setOpen] = useState(false);
 
   return (
     <>
       <IconButton onClick={() => setOpen(true)} color="primary">
-        <CartIcon />
+        <CartIcon fontSize={iconSize} />
       </IconButton>
       <CartDrawer open={open} onClose={() => setOpen(false)} />
     </>

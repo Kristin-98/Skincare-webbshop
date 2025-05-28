@@ -62,50 +62,70 @@ export default function Header() {
 		<Box
 			component="header"
 			sx={{
-				px: 2,
+				px: { xs: 1, sm: 2 },
 				py: 1,
-				color: "palette.primary.main",
+				color: theme.palette.primary.main,
 				position: "sticky",
 				top: 0,
 				zIndex: 1000,
-				backgroundColor: "background.default",
+				backgroundColor: theme.palette.background.default,
 				display: "flex",
 				alignItems: "center",
-				justifyContent: "space-between",
-				height: 100,
+				height: { xs: 70, sm: 100 },
 			}}
 		>
-			<Box>
-				<Button color="inherit" component={NextLink} href="/category">
-					Kategorier
+			{/* Vänster: Kategorier */}
+
+			<Box
+				sx={{
+					flex: 1,
+					display: "flex",
+					justifyContent: "flex-start",
+				}}
+			>
+				<Button
+					color="inherit"
+					endIcon={<ExpandMore />}
+					size={isMobile ? "small" : "medium"}
+					component={NextLink}
+					href="/category"
+				>
+					Categories
 				</Button>
 			</Box>
 
 			{/* Mitten: Logotyp */}
 			<Box
 				sx={{
-					...(isMobile
-						? {
-								ml: 0,
-								position: "static",
-								transform: "none",
-						  }
-						: {
-								position: "absolute",
-								left: "50%",
-								transform: "translateX(-50%)",
-						  }),
+					position: { xs: "static", sm: "absolute" },
+					left: { sm: "50%" },
+					transform: { sm: "translateX(-50%)" },
+					zIndex: 1100,
 				}}
 			>
 				<NextLink href="/" passHref legacyBehavior>
-					<MuiLink underline="none">
-						<Image src="/logo.png" alt="Beauty" width={100} height={100} />
+					<MuiLink underline="none" sx={{ display: "inline-block" }}>
+						<Image
+							src="/logo.png"
+							alt="Beauty"
+							width={isMobile ? 60 : 100}
+							height={isMobile ? 60 : 100}
+							priority
+						/>
 					</MuiLink>
 				</NextLink>
 			</Box>
 
 			{/* Höger: Användarikon & varukorg */}
-			<Box sx={{ display: "flex", alignItems: "center" }}>
+			<Box
+				sx={{
+					flex: 1,
+					display: "flex",
+					justifyContent: "flex-end",
+					alignItems: "center",
+					gap: { xs: 1, sm: 3 },
+				}}
+			>
 				{user ? (
 					<>
 						<Box
@@ -116,12 +136,15 @@ export default function Header() {
 								flexDirection: "column",
 								alignItems: "center",
 								color: theme.palette.primary.main,
+								userSelect: "none",
 							}}
 						>
-							<AccountCircle sx={{ fontSize: 48 }} />
-							<Typography variant="caption" sx={{ mt: 0.5 }}>
-								{user.name ?? "Användare"}
-							</Typography>
+							<AccountCircle sx={{ fontSize: isMobile ? 32 : 48 }} />
+							{!isMobile && (
+								<Typography variant="caption" sx={{ mt: 0.5 }}>
+									{user.name ?? "User"}
+								</Typography>
+							)}
 						</Box>
 
 						<Menu
@@ -139,6 +162,13 @@ export default function Header() {
 								</MenuItem>
 							)}
 							<MenuItem
+								onClick={handleUserMenuClose}
+								component={Link}
+								href="/customer-order-history"
+							>
+								Your Orders
+							</MenuItem>
+							<MenuItem
 								onClick={() => {
 									signOut();
 									handleUserMenuClose();
@@ -152,15 +182,14 @@ export default function Header() {
 					<Button
 						variant="outlined"
 						color="primary"
+						size={isMobile ? "small" : "medium"}
 						onClick={() => signIn.social({ provider: "github" })}
 					>
 						Log in
 					</Button>
 				)}
 
-				<Box sx={{ ml: 6, mr: 3 }}>
-					<CartWithDrawer />
-				</Box>
+				<CartWithDrawer iconSize={isMobile ? "medium" : "large"} />
 			</Box>
 		</Box>
 	);

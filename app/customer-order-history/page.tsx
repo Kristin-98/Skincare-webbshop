@@ -3,7 +3,7 @@ import { Box, Typography } from "@mui/material";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { auth } from "../auth";
-import OrderSummaryDialog from "../components/order-summary-dialog";
+import OrderProductList from "../components/order-product-list";
 
 export default async function CustomerOrderHistory() {
   const session = await auth.api.getSession({
@@ -13,7 +13,16 @@ export default async function CustomerOrderHistory() {
 
   const orders = await db.order.findMany({
     where: { customerId: session.user.id },
-    //include: { orderRows: true, shippingAdress: true },
+    include: {
+      orderRows: {
+        include: {
+          product: true,
+        },
+      },
+    },
+    orderBy: {
+      createdAt: "desc",
+    }
   });
 
   return (
@@ -36,7 +45,7 @@ export default async function CustomerOrderHistory() {
           fontSize: { xs: "1.5rem", sm: "2rem" },
         }}
       >
-        Orderhistorik
+        Your Orders
       </Typography>
 
       {orders.map((order) => (
@@ -63,24 +72,15 @@ export default async function CustomerOrderHistory() {
           >
             <Box>
               <Typography variant="body1">
-                Ordernummer: {order.orderNumber}
-              </Typography>              
-              <Typography variant="body2">
-                Totalpris: {order.totalPrice} kr
+                Order number: {order.orderNumber}
               </Typography>
-              <OrderSummaryDialog/>
-            </Box>
-
-            <Box
-              component="span"
-              sx={{
-                padding: 1,
-                backgroundColor: "primary.main",
-                color: "#fff",
-                borderRadius: 1,
-              }}
-            >
-              Skickad
+              <Typography variant="body2">
+                Total: {order.totalPrice} kr
+              </Typography>
+              <OrderProductList
+                orderRows={order.orderRows}
+                orderStatus={order.status}
+              />
             </Box>
           </Box>
         </Box>
