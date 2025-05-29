@@ -11,6 +11,7 @@ async function main() {
 		});
 	}
 	for (const { id, categories: productCategoryIds, ...product } of products) {
+		console.log("products", products);
 		await db.product.upsert({
 			where: { articleNumber: product.articleNumber },
 			update: {
