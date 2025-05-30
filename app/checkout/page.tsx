@@ -1,14 +1,13 @@
 import { Box, Typography } from "@mui/material";
 import CheckoutForm from "./lib/checkout-form";
 import OrderSummary from "./lib/order-summary";
-import { getServerSession } from "../server-session";
 import { redirect } from "next/navigation";
+import { getServerSession } from "../server-session";
 
 export default async function CheckoutPage() {
 	const session = await getServerSession();
-
-	if (!session?.user) {
-		redirect("/");
+	if (!session) {
+		throw new Error("must be logged in to checkout");
 	}
 
 	return (

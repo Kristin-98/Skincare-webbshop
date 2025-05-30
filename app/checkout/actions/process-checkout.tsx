@@ -1,18 +1,16 @@
 "use server";
 
-import { auth } from "@/app/auth";
 import { CartItem } from "@/app/providers/cart-provider";
 import { db } from "@/prisma/db";
 import { Prisma } from "@prisma/client";
 import { headers } from "next/headers";
+import { getServerSession } from "@/app/server-session";
 
 export async function processCheckout(
 	cart: CartItem[],
 	shippingAdress: Prisma.AdressCreateInput
 ) {
-	const session = await auth.api.getSession({
-		headers: await headers(),
-	});
+	const session = await getServerSession();
 
 	if (!session) {
 		throw new Error("Not logged in");
