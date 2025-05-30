@@ -1,5 +1,6 @@
 "use server";
 
+import { categories } from "@/data/categories";
 import { db } from "@/prisma/db";
 import { OrderStatus, Prisma } from "@prisma/client";
 import { error } from "console";
@@ -14,9 +15,12 @@ export async function addNewProduct(product: Prisma.ProductCreateInput) {
 }
 
 export async function getAllProducts() {
-	return await db.product.findMany();
+	return db.product.findMany({
+		include: {
+			categories: true,
+		},
+	});
 }
-
 export async function getProductById(id: string) {
 	if (!id) throw new Error("Product ID is required");
 
