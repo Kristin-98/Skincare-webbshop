@@ -17,9 +17,7 @@ export default async function AdminCard() {
             <Grid size={{ xs: 12, sm: 6, md: 4 }} key={product.id}>
               <ProductCard product={product}>
                 <Box sx={{ display: "block" }}>
-                  <Typography variant="body2">
-                    Category ID: {product.categoryId}
-                  </Typography>
+                  
                   <Typography variant="body2">
                     Stock Quantity: {product.stockQuantity}
                   </Typography>
