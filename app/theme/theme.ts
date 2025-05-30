@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { brown } from '@mui/material/colors';
-import { createTheme } from '@mui/material/styles';
+import { brown } from "@mui/material/colors";
+import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: brown[400],
-      light: brown[300],
-      dark: brown[700],
+      main: "#727466",
+      light: "#727466",
+      dark: "#283323",
     },
     secondary: {
       main: "#f44336" /*accentfärger*/,
@@ -18,15 +18,15 @@ const theme = createTheme({
       paper: "#F5F5F5" /*white smoke*/,
     },
     text: {
-      primary: brown[900],
-      secondary: brown[600],
+      primary: "#283323",
+      secondary: "#727466",
     },
   },
   typography: {
     fontFamily: "var(--font-poppins)",
     fontWeightRegular: 600, // Standardtext
     fontWeightMedium: 700, // Mellanrubriker
-    fontWeightBold: 800, // Rubriker 
+    fontWeightBold: 800, // Rubriker
   },
 });
 
