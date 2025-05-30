@@ -1,13 +1,14 @@
 import { Box, Typography } from "@mui/material";
 import CheckoutForm from "./lib/checkout-form";
 import OrderSummary from "./lib/order-summary";
-import { redirect } from "next/navigation";
+import NotLoggedInRedirect from "./lib/login-alert-redirect";
 import { getServerSession } from "../server-session";
 
 export default async function CheckoutPage() {
 	const session = await getServerSession();
+
 	if (!session) {
-		throw new Error("must be logged in to checkout");
+		return <NotLoggedInRedirect />;
 	}
 
 	return (
