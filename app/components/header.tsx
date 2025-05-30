@@ -19,11 +19,6 @@ import NextLink from "next/link";
 import React, { useEffect, useState } from "react";
 import CartWithDrawer from "./cart-with-drawer";
 
-interface Category {
-	id: string;
-	name: string;
-}
-
 export default function Header() {
 	const { data: session } = useSession();
 	const user = session?.user;
@@ -34,28 +29,12 @@ export default function Header() {
 	const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
 		null
 	);
-	const [anchorElCat, setAnchorElCat] = React.useState<null | HTMLElement>(
-		null
-	);
-
-	const [categories, setCategories] = useState<Category[]>([]);
-
-	useEffect(() => {
-		getAllCategories().then(setCategories).catch(console.error);
-	}, []);
 
 	const handleUserMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorElUser(event.currentTarget);
 	};
 	const handleUserMenuClose = () => {
 		setAnchorElUser(null);
-	};
-
-	const handleCatMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-		setAnchorElCat(event.currentTarget);
-	};
-	const handleCatMenuClose = () => {
-		setAnchorElCat(null);
 	};
 
 	return (

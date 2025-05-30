@@ -15,3 +15,8 @@ export async function getProductsByCategory(categoryId: string) {
 		},
 	});
 }
+
+// ServerComp/ServerActions
+// Read/Write
+// Query/Mutate
+// Fetch/Update
