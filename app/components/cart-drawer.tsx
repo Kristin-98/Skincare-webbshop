@@ -95,7 +95,7 @@ export default function CartDrawer({
                     sx={{
                       fontWeight: "bold",
                       color: theme.palette.primary.light,
-                      fontSize: { xs: 14, sm: "1.2rem" },
+                      fontSize: { xs: 14, sm: "1rem" },
                     }}
                   >
                     {item.title}
