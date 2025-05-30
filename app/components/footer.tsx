@@ -40,7 +40,7 @@ export default function Footer() {
 
       <Divider sx={{ my: 4 }} />
 
-      {/* Sociala medier + logotyp */}
+ 
       <Box
         sx={{
           display: "grid",
@@ -51,7 +51,7 @@ export default function Footer() {
         }}
       >
         <Box>
-          <Typography>Följ oss:</Typography>
+          <Typography>Follow Us:</Typography>
           <IconButton
             href="#"
             aria-label="Facebook"
