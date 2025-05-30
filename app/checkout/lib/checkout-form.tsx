@@ -26,8 +26,7 @@ const checkoutSchema = z.object({
   email: z.string().email("Invalid email address"),
   phone: z
     .string()
-    .regex(/^\d{7,15}$/, "Invalid phone number")
-    .transform((val) => parseInt(val, 10)),
+    .regex(/^\+?\d{7,15}$/, "Invalid phone number")
 });
 
 type CheckoutFormValues = z.infer<typeof checkoutSchema>;

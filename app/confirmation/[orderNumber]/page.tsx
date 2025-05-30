@@ -1,15 +1,27 @@
 import { db } from "@/prisma/db";
-import { Box, CardMedia, List, ListItem, Typography } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Divider,
+  List,
+  ListItem,
+  ListItemAvatar,
+  Typography,
+} from "@mui/material";
 
 interface Props {
-  params: Promise<{ orderNumber: string }>;
+  params: { orderNumber: string };
 }
 
-export default async function ConfirmationPage(props: Props) {
-  const { orderNumber } = await props.params;
+export default async function ConfirmationPage({ params }: Props) {
+  const { orderNumber } = await params;
   const order = await db.order.findUnique({
     where: { orderNumber },
-    include: { customer: true, orderRows: { include: { product: true } } },
+    include: {
+      customer: true,
+      shippingAdress: true,
+      orderRows: { include: { product: true } },
+    },
   });
 
   if (!order) {
@@ -36,6 +48,7 @@ export default async function ConfirmationPage(props: Props) {
         <Typography variant="h4" fontWeight="bold" sx={{ my: 2 }}>
           Tack för din order, {order.customer.name}!
         </Typography>
+        <Divider sx={{ my: 3, width: "80%" }} />
         <Typography variant="body1" sx={{ my: 2 }}>
           Ditt ordernummer är : {order.orderNumber}
         </Typography>
@@ -46,15 +59,21 @@ export default async function ConfirmationPage(props: Props) {
           {order.orderRows.map((row) => (
             <ListItem
               key={row.id}
-              sx={{ display: "flex", alignItems: "center", gap: 2 }}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 2,
+                justifyContent: "left",
+              }}
             >
-              <CardMedia
-                sx={{ height: 200, objectFit: "contain" }}
-                component="img"
-                src={row.product.image}
-              ></CardMedia>
+              <ListItemAvatar>
+                <Avatar
+                  src={row.product.image}
+                  sx={{ width: 100, height: 100 }}
+                />
+              </ListItemAvatar>
               <Typography variant="body1">
-                {row.product.title} : {row.quantity} st - {row.price} kr
+                {row.product.title} : {row.quantity}st {row.price}kr
               </Typography>
             </ListItem>
           ))}
@@ -62,17 +81,21 @@ export default async function ConfirmationPage(props: Props) {
         <Typography variant="h6" fontWeight="bold" mt={2}>
           Totalt : {totalPrice.toFixed(2)} kr
         </Typography>
+        <Divider sx={{ my: 3, width: "80%" }} />
         <Typography variant="body1" sx={{ my: 2 }}>
-          Dina varor levereras till : {order.customer.address},{" "}
-          {order.customer.zipcode} {order.customer.city}.
+          Dina varor levereras till : <br /> {order.shippingAdress.name}
+          <br />
+          {order.shippingAdress.streetAdress}
+          <br /> {order.shippingAdress.postalCode}
+          <br /> {order.shippingAdress.city}
         </Typography>
         <Typography variant="body1" sx={{ my: 2 }}>
-          Ett bekräftelsemail har skickats till din epost : {" "}
-          {order.customer.email}
+          Ett bekräftelsemail har skickats till din epost :{" "}
+          {order.shippingAdress.email}
         </Typography>
         <Typography variant="body1" sx={{ my: 2 }}>
           När leveransen är framme kommer vi skicka ett SMS till ditt
-          telefonnummer : {order.customer.phone}
+          telefonnummer : {order.shippingAdress.phone}
         </Typography>
       </Box>
     </main>
