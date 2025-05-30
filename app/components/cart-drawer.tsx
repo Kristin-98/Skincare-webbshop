@@ -85,12 +85,13 @@ export default function CartDrawer({
 										borderBottom: "1px solid #ddd",
 									}}
 								>
+									{/* Titel ovanför */}
 									<Typography
 										variant="h6"
 										sx={{
 											fontWeight: "bold",
 											color: theme.palette.primary.light,
-											fontSize: { xs: 14, sm: "1.2rem" },
+											fontSize: { xs: 14, sm: "1rem" },
 										}}
 									>
 										{item.title}

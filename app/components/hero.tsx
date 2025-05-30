@@ -96,7 +96,7 @@ export default function Hero() {
           craftsmanship to bring calm and clarity into your home.
         </Typography>
 
-        <Link href="/products" passHref>
+        <Link href="/category" passHref>
           <Button
             variant="contained"
             color="primary"
@@ -110,7 +110,7 @@ export default function Hero() {
               },
             }}
           >
-            Shop Now
+            Shop by Category
           </Button>
         </Link>
       </Box>

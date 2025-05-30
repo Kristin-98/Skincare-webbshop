@@ -7,7 +7,6 @@ interface Props {
 }
 
 export default async function AdminEditProductPage({ params }: Props) {
-
   const { id: articleNumber } = await params;
   const product = await db.product.findUnique({ where: { articleNumber } });
 
@@ -34,7 +33,7 @@ export default async function AdminEditProductPage({ params }: Props) {
           marginBottom: 9,
         }}
       >
-        Redigera din produkt
+        Edit product
       </Typography>
       <ProductForm product={product} />
     </Box>
