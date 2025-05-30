@@ -34,9 +34,6 @@ export default function Header() {
 	const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
 		null
 	);
-	const [anchorElCat, setAnchorElCat] = React.useState<null | HTMLElement>(
-		null
-	);
 
 	const [categories, setCategories] = useState<Category[]>([]);
 
@@ -49,13 +46,6 @@ export default function Header() {
 	};
 	const handleUserMenuClose = () => {
 		setAnchorElUser(null);
-	};
-
-	const handleCatMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-		setAnchorElCat(event.currentTarget);
-	};
-	const handleCatMenuClose = () => {
-		setAnchorElCat(null);
 	};
 
 	return (
