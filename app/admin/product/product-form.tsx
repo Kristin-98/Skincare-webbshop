@@ -1,27 +1,27 @@
 "use client";
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Box,
   Button,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
+  Checkbox,
   FormControl,
   FormHelperText,
-  OutlinedInput,
-  Checkbox,
+  InputLabel,
   ListItemText,
+  MenuItem,
+  OutlinedInput,
+  Select,
+  TextField,
 } from "@mui/material";
-import { useEffect, useState } from "react";
+import { Category, Prisma, Product } from "@prisma/client";
 import { useRouter } from "next/navigation";
-import { useForm, Controller } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
-import { Prisma, Category, Product } from "@prisma/client";
 
-import { getAllCategories } from "@/app/product/get-all-categories";
-import { createProduct } from "@/app/product/create-product";
+import { createProduct } from "@/app/admin/product/new/create-product";
+import { getAllCategories } from "@/app/category/category-actions";
 import { updateProduct } from "@/app/product/[articleNumber]/[title]/product-actions";
 
 const schema = z.object({
@@ -29,7 +29,10 @@ const schema = z.object({
   description: z.string().min(1, "Description is required"),
   price: z.coerce.number().positive("Price must be a positive number"),
   image: z.string().url("Image must be a valid URL"),
-  stockQuantity: z.coerce.number().int().nonnegative("Stock must be a non-negative number"),
+  stockQuantity: z.coerce
+    .number()
+    .int()
+    .nonnegative("Stock must be a non-negative number"),
   categories: z.array(z.string()).min(1, "Select at least one category"),
 });
 
@@ -134,7 +137,9 @@ export default function ProductForm({ product }: Props) {
             </Select>
           )}
         />
-        <FormHelperText>{form.formState.errors.categories?.message}</FormHelperText>
+        <FormHelperText>
+          {form.formState.errors.categories?.message}
+        </FormHelperText>
       </FormControl>
       <TextField
         label="Price"
@@ -156,7 +161,6 @@ export default function ProductForm({ product }: Props) {
         error={Boolean(form.formState.errors.image)}
         helperText={form.formState.errors.image?.message}
       />
-
 
       <Button type="submit" variant="contained" color="primary">
         {product ? "Save changes" : "Create new product"}
