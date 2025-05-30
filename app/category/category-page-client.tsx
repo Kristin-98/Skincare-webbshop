@@ -1,12 +1,20 @@
 "use client";
 
-import { Box, Checkbox, FormControlLabel, Typography } from "@mui/material";
+import {
+	Box,
+	Checkbox,
+	Container,
+	FormControlLabel,
+	Typography,
+} from "@mui/material";
+import Grid from "@mui/material/Grid";
 import { useState } from "react";
 import ProductCard from "../components/product-card";
 
 interface Category {
 	id: string;
 	name: string;
+	description: string;
 }
 
 interface Product {
@@ -41,11 +49,16 @@ export default function CategoryPageClient({
 		  )
 		: products;
 
+	const selectedCategoryDescriptions = categories.filter((cat) =>
+		selected.includes(cat.id)
+	);
+
 	return (
-		<Box sx={{ p: 4 }}>
+		<Container sx={{ mt: 4 }}>
 			<Typography variant="h4" mb={2}>
 				Filter Products
 			</Typography>
+
 			<Box sx={{ display: "flex", gap: 2, mb: 4, flexWrap: "wrap" }}>
 				{categories.map((cat) => (
 					<FormControlLabel
@@ -61,21 +74,24 @@ export default function CategoryPageClient({
 				))}
 			</Box>
 
-			<Box
-				sx={{
-					display: "grid",
-					gridTemplateColumns: {
-						xs: "1fr",
-						sm: "1fr 1fr",
-						md: "1fr 1fr 1fr",
-					},
-					gap: 3,
-				}}
-			>
+			{selectedCategoryDescriptions.length > 0 && (
+				<Box sx={{ mb: 4 }}>
+					{selectedCategoryDescriptions.map((cat) => (
+						<Box key={cat.id} sx={{ mb: 2 }}>
+							<Typography variant="h6">{cat.name}</Typography>
+							<Typography variant="body2">{cat.description}</Typography>
+						</Box>
+					))}
+				</Box>
+			)}
+
+			<Grid container spacing={2}>
 				{filtered.map((product) => (
-					<ProductCard key={product.id} product={product} />
+					<Grid item xs={12} sm={6} md={4} key={product.id}>
+						<ProductCard product={product} />
+					</Grid>
 				))}
-			</Box>
-		</Box>
+			</Grid>
+		</Container>
 	);
 }
