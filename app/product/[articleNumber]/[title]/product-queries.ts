@@ -1,3 +1,5 @@
+import { db } from "@/prisma/db";
+
 export async function getAllProducts() {
 	return db.product.findMany({
 		include: {

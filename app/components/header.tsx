@@ -1,7 +1,6 @@
 "use client";
 
 import { signIn, signOut, useSession } from "@/app/auth-client";
-import { getAllCategories } from "@/app/category/category-actions";
 import { AccountCircle, ExpandMore } from "@mui/icons-material";
 import {
 	Box,

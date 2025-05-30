@@ -1,6 +1,10 @@
-import { getAllProducts } from "../product/[articleNumber]/[title]/product-actions";
-import { getAllCategories } from "@/app/category/category-actions";
+import { getAllProducts } from "../product/[articleNumber]/[title]/product-queries";
 import CategoryPageClient from "./category-page-client";
+import { db } from "@/prisma/db";
+
+export async function getAllCategories() {
+	return await db.category.findMany();
+}
 
 export default async function CategoryPage() {
 	const [categories, products] = await Promise.all([
