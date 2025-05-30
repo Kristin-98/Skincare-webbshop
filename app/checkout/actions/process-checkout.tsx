@@ -3,7 +3,6 @@
 import { CartItem } from "@/app/providers/cart-provider";
 import { db } from "@/prisma/db";
 import { Prisma } from "@prisma/client";
-import { headers } from "next/headers";
 import { getServerSession } from "@/app/server-session";
 
 export async function processCheckout(
@@ -24,40 +23,55 @@ export async function processCheckout(
 		data: shippingAdress,
 	});
 
-	const productIds = cart.map((item) => item.id);
-	const products = await db.product.findMany({
-		where: { id: { in: productIds } },
-	});
-
-	const productMap = new Map(products.map((p) => [p.id, p.price]));
-
-	const orderRows = cart.map((item) => {
-		const price = productMap.get(item.id);
-		if (price === undefined) {
-			throw new Error(`Product with ID ${item.id} not found`);
-		}
-
-		return {
-			productId: item.id,
-			quantity: item.quantity,
-			price,
-		};
-	});
-
-	const totalPrice = orderRows.reduce(
-		(sum, row) => sum + row.price * row.quantity,
+	const totalPrice = cart.reduce(
+		(sum, item) => sum + item.price * item.quantity,
 		0
 	);
 
-	const order = await db.order.create({
-		data: {
-			shippingAdressId: address.id,
-			totalPrice,
-			customerId: session.user.id,
-			orderRows: {
-				create: orderRows,
+	const productIds = cart.map((item) => item.id);
+	const existingProducts = await db.product.findMany({
+		where: { id: { in: productIds } },
+	});
+
+	if (existingProducts.length !== productIds.length) {
+		throw new Error("One or more products in cart do not exist");
+	}
+
+	// Transaktion
+	const order = await db.$transaction(async (tx) => {
+		const createdOrder = await tx.order.create({
+			data: {
+				shippingAdressId: address.id,
+				totalPrice,
+				customerId: session.user.id,
+				orderRows: {
+					create: cart.map((item) => ({
+						productId: item.id,
+						quantity: item.quantity,
+						price: item.price,
+					})),
+				},
 			},
-		},
+		});
+
+		for (const item of cart) {
+			const product = await tx.product.findUnique({ where: { id: item.id } });
+
+			if (!product) throw new Error(`Product not found: ${item.id}`);
+
+			if (product.stockQuantity < item.quantity) {
+				throw new Error(
+					`Not enough stock for product ${product.title}. Available: ${product.stockQuantity}, requested: ${item.quantity}`
+				);
+			}
+
+			await tx.product.update({
+				where: { id: item.id },
+				data: { stockQuantity: product.stockQuantity - item.quantity },
+			});
+		}
+
+		return createdOrder;
 	});
 
 	return order.orderNumber;
