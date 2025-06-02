@@ -1,12 +1,9 @@
 "use server";
 
-import { categories } from "@/data/categories";
 import { db } from "@/prisma/db";
 import { OrderStatus, Prisma } from "@prisma/client";
-import { error } from "console";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import { object } from "zod";
 
 export async function addNewProduct(product: Prisma.ProductCreateInput) {
 	await db.product.create({ data: product });
@@ -48,7 +45,7 @@ export async function deleteProduct(articleNumber: string) {
 	revalidatePath("/admin");
 }
 
-//denna ska kanske vara i admin? /h
+
 export async function updateOrderStatus(
 	orderNumber: string,
 	newStatus: OrderStatus

@@ -1,4 +1,3 @@
-// components/OrderProductList.tsx
 import {
   Box,
   CardMedia,
@@ -38,7 +37,7 @@ export default function OrderProductList({ orderRows, orderStatus }: Props) {
           label={orderStatus}
           color={orderStatus === OrderStatus.pending ? "warning" : "success"}
           size="small"
-          sx={{ fontWeight: 'bold' }}
+          sx={{ fontWeight: "bold" }}
         />
       </Box>
 

@@ -56,7 +56,6 @@ export default function ProductForm({ product }: Props) {
     },
   });
 
-  // Hämta kategorier
   useEffect(() => {
     getAllCategories().then(setAllCategories).catch(console.error);
   }, []);
