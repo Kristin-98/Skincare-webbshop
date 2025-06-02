@@ -1,8 +1,7 @@
 import OrderProductList from "@/app/components/order-product-list";
 import OrderStatusButton from "@/app/components/order-status-button";
 import { db } from "@/prisma/db";
-import { Box, Divider, Typography, useTheme, useMediaQuery } from "@mui/material";
-import React from "react";
+import { Box, Divider, Typography } from "@mui/material";
 
 interface Props {
   params: { orderNumber: string };
@@ -11,7 +10,6 @@ interface Props {
 export default async function AdminOrderDetailPage({ params }: Props) {
   const { orderNumber } = params;
 
-  // Fetch the order details from the database
   const order = await db.order.findUnique({
     where: { orderNumber },
     include: {
@@ -38,7 +36,6 @@ export default async function AdminOrderDetailPage({ params }: Props) {
     0
   );
 
-
   return (
     <main>
       <Box
@@ -51,19 +48,18 @@ export default async function AdminOrderDetailPage({ params }: Props) {
           marginX: 2,
         }}
       >
-      
         <Typography
           variant="h4"
           fontWeight="bold"
           sx={{
             my: 2,
             fontSize: {
-              xs: "1.5rem",  
+              xs: "1.5rem",
               sm: "2rem",
-              md: "2.5rem",  
+              md: "2.5rem",
             },
             textAlign: "center",
-            wordBreak: "break-word",  
+            wordBreak: "break-word",
           }}
         >
           Order Details - Order Number: {order.orderNumber}
