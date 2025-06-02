@@ -23,11 +23,6 @@ export async function processCheckout(
 		data: shippingAdress,
 	});
 
-	const totalPrice = cart.reduce(
-		(sum, item) => sum + item.price * item.quantity,
-		0
-	);
-
 	const productIds = cart.map((item) => item.id);
 	const existingProducts = await db.product.findMany({
 		where: { id: { in: productIds } },
@@ -37,6 +32,16 @@ export async function processCheckout(
 		throw new Error("One or more products in cart do not exist");
 	}
 
+	const productMap = new Map(existingProducts.map((p) => [p.id, p]));
+
+	const totalPrice = cart.reduce((sum, item) => {
+		const product = productMap.get(item.id);
+		if (!product) {
+			throw new Error(`Product not found: ${item.id}`);
+		}
+		return sum + product.price * item.quantity;
+	}, 0);
+
 	// Transaktion
 	const order = await db.$transaction(async (tx) => {
 		const createdOrder = await tx.order.create({
@@ -45,11 +50,20 @@ export async function processCheckout(
 				totalPrice,
 				customerId: session.user.id,
 				orderRows: {
-					create: cart.map((item) => ({
-						productId: item.id,
-						quantity: item.quantity,
-						price: item.price,
-					})),
+					create: cart.map((item) => {
+						const product = productMap.get(item.id);
+						if (!product) {
+							throw new Error(
+								`Product not found during order creation: ${item.id}`
+							);
+						}
+
+						return {
+							productId: item.id,
+							quantity: item.quantity,
+							price: product.price,
+						};
+					}),
 				},
 			},
 		});
