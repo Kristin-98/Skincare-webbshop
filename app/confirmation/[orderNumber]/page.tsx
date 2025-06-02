@@ -5,7 +5,6 @@ import {
   Divider,
   List,
   ListItem,
-  ListItemAvatar,
   Typography,
 } from "@mui/material";
 
@@ -46,56 +45,118 @@ export default async function ConfirmationPage({ params }: Props) {
         }}
       >
         <Typography variant="h4" fontWeight="bold" sx={{ my: 2 }}>
-          Tack för din order, {order.customer.name}!
+          Thank you for your order, {order.customer.name}!
         </Typography>
         <Divider sx={{ my: 3, width: "80%" }} />
         <Typography variant="body1" sx={{ my: 2 }}>
-          Ditt ordernummer är : {order.orderNumber}
+          Your order number is : {order.orderNumber}
         </Typography>
         <Typography variant="body1" fontWeight="bold">
-          Beställda produkter:
+          Ordered products :
         </Typography>
-        <List>
+        <List sx={{ width: "100%", maxWidth: 400, mx: "auto" }}>
           {order.orderRows.map((row) => (
             <ListItem
               key={row.id}
               sx={{
                 display: "flex",
-                alignItems: "center",
-                gap: 2,
-                justifyContent: "left",
+                flexDirection: "column",
+                gap: 1,
+                py: 2,
+                px: 0,
+                borderBottom: "1px solid #ddd",
               }}
             >
-              <ListItemAvatar>
+              <Typography
+                variant="h6"
+                sx={{
+                  fontWeight: "bold",
+                  fontSize: { xs: "1rem", sm: "1.2rem" },
+                }}
+              >
+                {row.product.title}
+              </Typography>
+
+              <Box
+                sx={{
+                  display: "flex",
+                  width: "100%",
+                  gap: 2,
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  flexWrap: "nowrap",
+                }}
+              >
                 <Avatar
                   src={row.product.image}
+                  alt={row.product.title}
                   sx={{ width: 100, height: 100 }}
                 />
-              </ListItemAvatar>
-              <Typography variant="body1">
-                {row.product.title} : {row.quantity}st {row.price}kr
-              </Typography>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    flexGrow: 1,
+                    minWidth: 0,
+                  }}
+                >
+                  <Typography
+                    sx={{
+                      fontSize: { xs: "0.9rem", sm: "1rem" },
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Amount: {row.quantity}
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontSize: { xs: "0.9rem", sm: "1rem" },
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Price: {row.price * row.quantity} SEK
+                  </Typography>
+                </Box>
+              </Box>
             </ListItem>
           ))}
         </List>
-        <Typography variant="h6" fontWeight="bold" mt={2}>
-          Totalt : {totalPrice.toFixed(2)} kr
-        </Typography>
+
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            mt: 2,
+            width: "100%",
+            maxWidth: 400,
+          }}
+        >
+          <Typography variant="h6" fontWeight="bold">
+            Total :
+          </Typography>
+          <Typography variant="h6" fontWeight="bold" color="primary">
+            {totalPrice.toFixed(2)} SEK
+          </Typography>
+        </Box>
+
         <Divider sx={{ my: 3, width: "80%" }} />
+
         <Typography variant="body1" sx={{ my: 2 }}>
-          Dina varor levereras till : <br /> {order.shippingAdress.name}
-          <br />
-          {order.shippingAdress.streetAdress}
-          <br /> {order.shippingAdress.postalCode}
-          <br /> {order.shippingAdress.city}
+          Your items will be delivered to : <br />
+          {order.shippingAdress.name} <br />
+          {order.shippingAdress.streetAdress} <br />
+          {order.shippingAdress.postalCode} <br />
+          {order.shippingAdress.city}
         </Typography>
+
         <Typography variant="body1" sx={{ my: 2 }}>
-          Ett bekräftelsemail har skickats till din epost :{" "}
-          {order.shippingAdress.email}
+          A confirmation email has been sent to : {order.shippingAdress.email}
         </Typography>
+
         <Typography variant="body1" sx={{ my: 2 }}>
-          När leveransen är framme kommer vi skicka ett SMS till ditt
-          telefonnummer : {order.shippingAdress.phone}
+          You will receive a text message when the delivery arrives :{" "}
+          {order.shippingAdress.phone}
         </Typography>
       </Box>
     </main>
