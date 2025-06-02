@@ -1,7 +1,7 @@
 import { Box, CssBaseline } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import { ThemeProvider } from "@mui/material/styles";
-import { Poppins } from "next/font/google";
+import { Albert_Sans } from "next/font/google";
 import type { Metadata } from "next/types";
 import { PropsWithChildren } from "react";
 import Footer from "./components/footer";
@@ -9,9 +9,9 @@ import Header from "./components/header";
 import { CartProvider } from "./providers/cart-provider";
 import theme from "./theme/theme";
 
-const poppins = Poppins({
+const poppins = Albert_Sans({
 	subsets: ["latin"],
-	weight: "100",
+	weight: ["100", "200", "400", "600"],
 });
 
 export const metadata: Metadata = {
