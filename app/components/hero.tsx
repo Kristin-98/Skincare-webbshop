@@ -20,7 +20,6 @@ export default function Hero() {
 				},
 			}}
 		>
-			{/* Background Image */}
 			<Box
 				sx={{
 					position: "absolute",
@@ -48,7 +47,6 @@ export default function Hero() {
 				/>
 			</Box>
 
-			{/* Dark Overlay */}
 			<Box
 				sx={{
 					position: "absolute",
@@ -56,12 +54,11 @@ export default function Hero() {
 					left: 0,
 					width: "100%",
 					height: "100%",
-					backgroundColor: "rgba(0, 0, 0, 0.3)", // Adjust opacity as needed
+					backgroundColor: "rgba(0, 0, 0, 0.3)",
 					zIndex: 1,
 				}}
 			/>
 
-			{/* Text + Button Overlay */}
 			<Box
 				sx={{
 					position: "relative",
@@ -76,6 +73,7 @@ export default function Hero() {
 					variant="h2"
 					sx={{
 						fontSize: { xs: 30, md: 40 },
+						fontWeight: "400",
 						textShadow: "2px 2px 4px rgba(50, 50, 50, 0.6)",
 						mb: 2,
 					}}
@@ -88,6 +86,7 @@ export default function Hero() {
 					sx={{
 						mb: 3,
 						textShadow: "2px 2px 4px rgba(0,0,0,0.5)",
+						fontWeight: "400",
 					}}
 				>
 					Each piece in our collection reflects the harmony of form and function
