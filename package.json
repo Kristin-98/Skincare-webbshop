@@ -5,7 +5,7 @@
   "license": "ISC",
   "private": true,
   "scripts": {
-    "postinstall": "prisma db push",
+    "postinstall": "prisma db push && prisma generate --no-engine",
     "dev": "next dev --turbopack --port 5173",
     "build": "next build",
     "start": "next start",
