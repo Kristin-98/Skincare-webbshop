@@ -40,7 +40,6 @@ export default function Footer() {
 
 			<Divider sx={{ my: 4 }} />
 
-			{/* Sociala medier + logotyp */}
 			<Box
 				sx={{
 					display: "grid",

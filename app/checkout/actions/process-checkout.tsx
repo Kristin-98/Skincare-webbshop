@@ -42,7 +42,6 @@ export async function processCheckout(
 		return sum + product.price * item.quantity;
 	}, 0);
 
-	// Transaktion
 	const order = await db.$transaction(async (tx) => {
 		const createdOrder = await tx.order.create({
 			data: {

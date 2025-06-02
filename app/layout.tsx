@@ -34,7 +34,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
 								}}
 							/>
 							<Header />
-							{/* <SignInPage /> */}
+
 							{children}
 							<Footer />
 						</CartProvider>
