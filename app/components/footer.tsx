@@ -50,7 +50,7 @@ export default function Footer() {
 				}}
 			>
 				<Box>
-					<Typography>Följ oss:</Typography>
+					<Typography>Follow Us:</Typography>
 					<IconButton
 						href="#"
 						aria-label="Facebook"
@@ -99,7 +99,7 @@ export default function Footer() {
 
 				<Image
 					src="/sf-logga.png"
-					alt="Beauty"
+					alt="Scandi logo"
 					width={100}
 					height={50}
 					style={{ margin: "auto" }}
