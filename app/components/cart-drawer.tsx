@@ -85,7 +85,6 @@ export default function CartDrawer({
 										borderBottom: "1px solid #ddd",
 									}}
 								>
-									{/* Titel ovanför */}
 									<Typography
 										variant="h6"
 										sx={{

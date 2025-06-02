@@ -1,7 +1,6 @@
 "use client";
 
 import { signIn, signOut, useSession } from "@/app/auth-client";
-import { getAllCategories } from "@/app/category/category-actions";
 import { AccountCircle, ExpandMore } from "@mui/icons-material";
 import {
 	Box,
@@ -19,11 +18,6 @@ import NextLink from "next/link";
 import React, { useEffect, useState } from "react";
 import CartWithDrawer from "./cart-with-drawer";
 
-interface Category {
-	id: string;
-	name: string;
-}
-
 export default function Header() {
 	const { data: session } = useSession();
 	const user = session?.user;
@@ -34,12 +28,6 @@ export default function Header() {
 	const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
 		null
 	);
-
-	const [categories, setCategories] = useState<Category[]>([]);
-
-	useEffect(() => {
-		getAllCategories().then(setCategories).catch(console.error);
-	}, []);
 
 	const handleUserMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorElUser(event.currentTarget);
@@ -81,7 +69,6 @@ export default function Header() {
 				</Button>
 			</Box>
 
-			{/* Mitten: Logotyp */}
 			<Box
 				sx={{
 					position: { xs: "static", sm: "absolute" },
@@ -93,17 +80,16 @@ export default function Header() {
 				<NextLink href="/" passHref legacyBehavior>
 					<MuiLink underline="none" sx={{ display: "inline-block" }}>
 						<Image
-							src="/logo.png"
-							alt="Beauty"
-							width={isMobile ? 60 : 100}
-							height={isMobile ? 60 : 100}
+							src="/sf-logga.png"
+							alt="Scandiloggo"
+							width={isMobile ? 90 : 150}
+							height={isMobile ? 45 : 75}
 							priority
 						/>
 					</MuiLink>
 				</NextLink>
 			</Box>
 
-			{/* Höger: Användarikon & varukorg */}
 			<Box
 				sx={{
 					flex: 1,

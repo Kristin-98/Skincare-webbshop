@@ -27,15 +27,7 @@ export default async function CheckoutPage() {
 						textAlign: "center",
 					}}
 				>
-					<Typography
-						variant="h2"
-						sx={{
-							fontSize: "2.5rem",
-							fontWeight: "bold",
-							color: "primary.main",
-							marginBottom: 3,
-						}}
-					>
+					<Typography variant="h5" mb={2} fontWeight="300">
 						Order summary
 					</Typography>
 					<OrderSummary />
