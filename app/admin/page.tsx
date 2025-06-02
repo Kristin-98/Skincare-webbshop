@@ -1,8 +1,10 @@
 import { Box, Button, Typography } from "@mui/material";
 import Link from "next/link";
 import AdminCard from "./lib/admin-card";
+import { assertIsAdmin } from "../server-session";
 
-export default function AdminPage() {
+export default async function AdminPage() {
+  await assertIsAdmin();
   return (
     <main>
       <Typography
