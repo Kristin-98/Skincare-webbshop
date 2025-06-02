@@ -93,10 +93,10 @@ export default function Header() {
 				<NextLink href="/" passHref legacyBehavior>
 					<MuiLink underline="none" sx={{ display: "inline-block" }}>
 						<Image
-							src="/logo.png"
+							src="/sf-logga.png"
 							alt="Beauty"
-							width={isMobile ? 60 : 100}
-							height={isMobile ? 60 : 100}
+							width={isMobile ? 90 : 150}
+							height={isMobile ? 45 : 75}
 							priority
 						/>
 					</MuiLink>
