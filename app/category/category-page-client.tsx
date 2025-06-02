@@ -55,8 +55,8 @@ export default function CategoryPageClient({
 
 	return (
 		<Container sx={{ mt: 4 }}>
-			<Typography variant="h4" mb={2}>
-				Filter Products
+			<Typography variant="h4" mb={2} fontWeight="400">
+				Products
 			</Typography>
 
 			<Box sx={{ display: "flex", gap: 2, mb: 4, flexWrap: "wrap" }}>

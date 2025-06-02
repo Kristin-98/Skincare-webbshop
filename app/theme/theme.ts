@@ -24,9 +24,13 @@ const theme = createTheme({
 	},
 	typography: {
 		fontFamily: "var(--font-albert-sans)",
-		fontWeightRegular: 300, // normal text
-		fontWeightMedium: 400, // mellanrubriker
-		fontWeightBold: 300, // rubriker
+		fontWeightRegular: 300,
+		fontWeightMedium: 400,
+		fontWeightBold: 300,
+		body1: {
+			fontSize: "1.1rem",
+			fontWeight: 300,
+		},
 	},
 });
 
