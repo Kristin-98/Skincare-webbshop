@@ -65,7 +65,7 @@ export default async function AdminOrderDetailPage({ params }: Props) {
           Order Details - Order Number: {order.orderNumber}
         </Typography>
 
-        <Typography variant="h6" sx={{ mt: 2 }}>
+        <Typography variant="h6" sx={{ mt: 2 }} color="text.secondary">
           Customer: {order.customer.name}
         </Typography>
         <Typography variant="body1" color="text.secondary">

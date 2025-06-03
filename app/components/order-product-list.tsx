@@ -37,7 +37,7 @@ export default function OrderProductList({ orderRows, orderStatus }: Props) {
           label={orderStatus}
           color={orderStatus === OrderStatus.pending ? "warning" : "success"}
           size="small"
-          sx={{ fontWeight: "bold" }}
+          sx={{ fontWeight: "500" }}
         />
       </Box>
 
@@ -54,22 +54,26 @@ export default function OrderProductList({ orderRows, orderStatus }: Props) {
             }}
           >
             <CardMedia
-              sx={{ width: 80, height: 80, objectFit: "contain" }}
+              sx={{ width: 100, height: 100, objectFit: "contain" }}
               component="img"
               src={row.product.image}
               alt={row.product.title}
             />
             <Box>
-              <Typography variant="body1" fontWeight="bold">
+              <Typography
+                variant="body1"
+                fontWeight="bold"
+                sx={{ fontSize: "1.4rem" }}
+              >
                 {row.product.title}
               </Typography>
-              <Typography variant="body2">
+              <Typography variant="body2" sx={{ fontSize: "1rem" }}>
                 Quantity: {row.quantity} pc(s)
               </Typography>
-              <Typography variant="body2">
+              <Typography variant="body2" sx={{ fontSize: "1rem" }}>
                 Price per item: {row.price} kr
               </Typography>
-              <Typography variant="body2">
+              <Typography variant="body2" sx={{ fontSize: "1rem" }}>
                 Total for item: {row.price * row.quantity} kr
               </Typography>
             </Box>

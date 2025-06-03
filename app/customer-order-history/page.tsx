@@ -22,7 +22,7 @@ export default async function CustomerOrderHistory() {
     },
     orderBy: {
       createdAt: "desc",
-    }
+    },
   });
 
   return (
@@ -41,6 +41,7 @@ export default async function CustomerOrderHistory() {
         component="h2"
         sx={{
           mb: 3,
+          mt: { xs: 2, md: 5 },
           textAlign: "center",
           fontSize: { xs: "1.5rem", sm: "2rem" },
         }}

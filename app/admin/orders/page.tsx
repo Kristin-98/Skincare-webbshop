@@ -70,7 +70,13 @@ export default async function AdminOrderPage({
           </Typography>
         ) : (
           orders.map((order) => (
-            <Card key={order.id} sx={{ width: "80%", wordBreak: "break-word" }}>
+            <Card
+              key={order.id}
+              sx={{
+                width: { xs: "80%", lg: "50%" },
+                wordBreak: "break-word",
+              }}
+            >
               <CardContent>
                 <Typography variant="h6">
                   Order Number: {order.orderNumber}
