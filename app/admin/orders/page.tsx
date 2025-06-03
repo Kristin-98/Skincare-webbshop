@@ -98,7 +98,7 @@ export default async function AdminOrderPage({
                         : "success"
                     }
                     size="small"
-                    sx={{ fontWeight: "bold" }}
+                    sx={{ fontWeight: "500" }}
                   />
                 </Box>
                 <Link href={`/admin/orders/${order.orderNumber}`}>
