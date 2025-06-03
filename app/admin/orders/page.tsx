@@ -12,15 +12,15 @@ import { OrderStatus } from "@prisma/client";
 import Link from "next/link";
 
 interface AdminOrderPageProps {
-  searchParams?: {
+  searchParams: Promise<{
     status?: string;
-  };
+  }>;
 }
 
 export default async function AdminOrderPage({
   searchParams,
 }: AdminOrderPageProps) {
-  const filterStatus = searchParams?.status as OrderStatus | undefined;
+  const filterStatus = (await searchParams).status as OrderStatus;
   const orders = await db.order.findMany({
     include: { customer: true },
     orderBy: { createdAt: "desc" },
@@ -70,7 +70,7 @@ export default async function AdminOrderPage({
           </Typography>
         ) : (
           orders.map((order) => (
-            <Card key={order.id} sx={{ width: "80%", wordBreak: "break-word",  }}>
+            <Card key={order.id} sx={{ width: "80%", wordBreak: "break-word" }}>
               <CardContent>
                 <Typography variant="h6">
                   Order Number: {order.orderNumber}
@@ -92,7 +92,7 @@ export default async function AdminOrderPage({
                         : "success"
                     }
                     size="small"
-                    sx={{ fontWeight: 'bold' }}
+                    sx={{ fontWeight: "bold" }}
                   />
                 </Box>
                 <Link href={`/admin/orders/${order.orderNumber}`}>

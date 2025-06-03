@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 
 interface Props {
-  params: { orderNumber: string };
+  params: Promise<{ orderNumber: string }>;
 }
 
 export default async function ConfirmationPage({ params }: Props) {
