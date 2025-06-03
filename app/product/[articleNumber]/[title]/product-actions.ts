@@ -6,6 +6,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export async function addNewProduct(product: Prisma.ProductCreateInput) {
+	// admin check
 	await db.product.create({ data: product });
 	revalidatePath("/");
 	redirect("/admin");

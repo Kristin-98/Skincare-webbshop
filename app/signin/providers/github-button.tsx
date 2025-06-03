@@ -9,7 +9,9 @@ export default function GithubButton() {
       variant="outlined"
       color="primary"
       sx={{ mt: 2 }}
-      onClick={() => signIn.social({ provider: "github" })}
+      onClick={() =>
+        signIn.social({ provider: "github" /* callbackURL: "/admin" */ })
+      }
     >
       Sign in with Github
     </Button>
