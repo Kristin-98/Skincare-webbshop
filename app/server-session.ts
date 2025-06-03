@@ -10,6 +10,6 @@ export async function getServerSession() {
 export async function assertIsAdmin() {
   const session = await getServerSession();
   if (!session?.user.isAdmin) {
-    redirect("/permission-denied");
+    redirect("/signin?to=/admin");
   }
 }

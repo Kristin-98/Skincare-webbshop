@@ -1,5 +1,8 @@
 "use client";
 
+import { getAllCategories } from "@/app/category/category-actions";
+import { addNewProduct } from "@/app/product/[articleNumber]/[title]/product-actions";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Box,
   Button,
@@ -14,13 +17,10 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { z } from "zod";
-import { useForm, Controller } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState } from "react";
 import { Category, Prisma } from "@prisma/client";
-import { getAllCategories } from "@/app/category/category-actions";
-import { addNewProduct } from "@/app/product/[articleNumber]/[title]/product-actions";
+import { useEffect, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { z } from "zod";
 
 const schema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -152,7 +152,9 @@ export default function AdminForm() {
                 input={<OutlinedInput label="Categories" />}
                 renderValue={(selected) =>
                   selected
-                    .map((id) => allCategories.find((cat) => cat.id === id)?.name)
+                    .map(
+                      (id) => allCategories.find((cat) => cat.id === id)?.name
+                    )
                     .filter(Boolean)
                     .join(", ")
                 }
@@ -166,7 +168,9 @@ export default function AdminForm() {
               </Select>
             )}
           />
-          <FormHelperText>{form.formState.errors.categories?.message}</FormHelperText>
+          <FormHelperText>
+            {form.formState.errors.categories?.message}
+          </FormHelperText>
         </FormControl>
 
         <Button type="submit" variant="contained" color="primary">
