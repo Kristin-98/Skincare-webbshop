@@ -1,11 +1,17 @@
 "use client";
 
 import { signIn } from "@/app/auth-client";
+import { Button } from "@mui/material";
 
 export default function GithubButton() {
   return (
-    <button onClick={() => signIn.social({ provider: "github" })}>
-      Signin with Github
-    </button>
+    <Button
+      variant="outlined"
+      color="primary"
+      sx={{ mt: 2 }}
+      onClick={() => signIn.social({ provider: "github" })}
+    >
+      Sign in with Github
+    </Button>
   );
 }
