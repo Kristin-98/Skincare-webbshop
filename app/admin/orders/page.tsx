@@ -1,3 +1,4 @@
+import { assertIsAdmin } from "@/app/server-session";
 import { db } from "@/prisma/db";
 import {
   Box,
@@ -20,6 +21,7 @@ interface AdminOrderPageProps {
 export default async function AdminOrderPage({
   searchParams,
 }: AdminOrderPageProps) {
+  await assertIsAdmin();
   const filterStatus = (await searchParams).status as OrderStatus;
   const orders = await db.order.findMany({
     where: filterStatus ? { status: filterStatus } : undefined,
@@ -47,7 +49,7 @@ export default async function AdminOrderPage({
             variant={
               filterStatus === OrderStatus.pending ? "contained" : "outlined"
             }
-            color="warning"
+            color="error"
           >
             Pending
           </Button>
@@ -94,9 +96,7 @@ export default async function AdminOrderPage({
                   <Chip
                     label={order.status}
                     color={
-                      order.status === OrderStatus.pending
-                        ? "warning"
-                        : "success"
+                      order.status === OrderStatus.pending ? "error" : "success"
                     }
                     size="small"
                     sx={{ fontWeight: "500" }}

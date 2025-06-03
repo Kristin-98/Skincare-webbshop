@@ -39,7 +39,7 @@ export default function OrderStatusButton({
   return (
     <Button
       variant="contained"
-      color={currentStatus === OrderStatus.pending ? "warning" : "success"}
+      color={currentStatus === OrderStatus.pending ? "success" : "error"}
       onClick={toggleStatus}
       disabled={isPending} // Disable button while the update is pending
       sx={{ mt: 2 }}

@@ -1,5 +1,6 @@
 import OrderProductList from "@/app/components/order-product-list";
 import OrderStatusButton from "@/app/components/order-status-button";
+import { assertIsAdmin } from "@/app/server-session";
 import { db } from "@/prisma/db";
 import { Box, Divider, Typography } from "@mui/material";
 
@@ -8,6 +9,7 @@ interface Props {
 }
 
 export default async function AdminOrderDetailPage({ params }: Props) {
+  await assertIsAdmin();
   const { orderNumber } = await params;
 
   const order = await db.order.findUnique({
