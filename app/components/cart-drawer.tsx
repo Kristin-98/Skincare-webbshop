@@ -151,7 +151,13 @@ export default function CartDrawer({
                       />
                       <IconButton
                         onClick={() => removeFromCart(item.id)}
-                        sx={{ color: theme.palette.primary.main }}
+                        sx={{
+                          color: theme.palette.primary.main,
+                          padding: {
+                            xs: "4px",
+                            sm: "8px",
+                          },
+                        }}
                       >
                         <DeleteIcon />
                       </IconButton>
