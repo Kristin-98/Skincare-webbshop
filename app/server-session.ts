@@ -1,4 +1,4 @@
-// server-session.ts
+
 import { auth } from "@/app/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";

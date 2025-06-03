@@ -10,7 +10,6 @@ interface Props {
 export default async function AdminOrderDetailPage({ params }: Props) {
   const { orderNumber } = await params;
 
-  // Fetch the order details from the database
   const order = await db.order.findUnique({
     where: { orderNumber },
     include: {
