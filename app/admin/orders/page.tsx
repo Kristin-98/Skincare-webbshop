@@ -22,6 +22,7 @@ export default async function AdminOrderPage({
 }: AdminOrderPageProps) {
   const filterStatus = (await searchParams).status as OrderStatus;
   const orders = await db.order.findMany({
+    where: filterStatus ? { status: filterStatus } : undefined,
     include: { customer: true },
     orderBy: { createdAt: "desc" },
   });
