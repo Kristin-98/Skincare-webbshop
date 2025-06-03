@@ -35,7 +35,7 @@ export default function OrderProductList({ orderRows, orderStatus }: Props) {
         </Typography>
         <Chip
           label={orderStatus}
-          color={orderStatus === OrderStatus.pending ? "warning" : "success"}
+          color={orderStatus === OrderStatus.pending ? "error" : "success"}
           size="small"
           sx={{ fontWeight: "500" }}
         />
