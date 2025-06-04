@@ -47,3 +47,26 @@ Follow these steps to install and run the project locally:
 
 We use **MUI (Material-UI)** as the design system. The documentation can be found here:
 [Material-UI Documentation](https://mui.com/)
+
+Kravspecifikationpåprojektet:
+
+•Alla sidor skall vara responsiva. (G) [ja]
+•Arbetet ska implementeras med NextJS. (G) [ja]
+•Backenden ska ha validering på samtliga endpoints (även Server Actions). (G) [ja i våra actions-filer]
+•Skapa ett ER diagram som ska ha visats vid idégodkännandet (G) [ja]
+•Beskriv er företagsidé i en kort textuell presentation, detta ska ha visats vid idégodkännandet (G) [ja]
+•All data som programmet utnyttjar ska vara sparat i en SQL databas (produkter, beställningar, konton, mm) med undantaget av bilder. (G) [ja]
+•Man ska kunna logga in som administratör i systemet (G) [ja]
+•Inga Lösenord får sparas i klartext i databasen (G) [ja]
+•En besökare ska kunna beställa produkter från sidan, detta ska uppdatera lagersaldot i databasen (G) [ja]
+•Administratörer ska kunna uppdatera antalet produkter i lager från admin delen av sidan (G) [ja]
+•Administratörer ska kunna se en lista på alla gjorda beställningar (G) [ja]
+•Sidans produkter ska delas upp i kategorier, en produkt ska tillhöra minst en kategori, men kan tillhöra flera (G) [ja]
+•Från hemsidan ska man kunna se en lista över alla produkter, och man ska kunna lista bara dom produkter som tillhör en kategori (G) [ja i categories]
+•Besökare ska kunna lägga produkterna i en kundkorg, som är sparad i local-storage på klienten (G) [ja]
+•En besökare som gör en beställning ska få möjligheten att registrera sig samt logga in och måste vara inloggad som kund innan beställningen skapas (G) [ja, det står att man måste logga in]
+•Checkoutflödet i frontendapplikationen ska ha validering på samtliga fält (G) [ja zod]
+•När man är inloggad som kund ska man kunna se sina gjorda beställning och om det är skickade eller inte (G) [ja, your orders]
+•Administratörer ska kunna redigera produkt (G) [ja]
+•Administratörer ska kunna lägga till och ta bort produkter (G) [ja]
+•Administratörer ska kunna markera beställningar som skickade (G) [ja, admin-sidan]
